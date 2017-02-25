@@ -7,6 +7,7 @@
 //
 
 import Alamofire
+import AlamofireImage
 import SwiftyJSON
 
 class YouTubeService {
@@ -58,5 +59,16 @@ class YouTubeService {
         }
         
         return json.flatMap(Track.init)
+    }
+    
+    static func downloadImage(url: URL, completionHandler: @escaping (UIImage?, Error?) -> Void) -> Request {
+        return Alamofire.request(url).responseImage { (response) in
+            switch response.result {
+            case let .success(value):
+                completionHandler(value, nil)
+            case let .failure(error):
+                completionHandler(nil, error)
+            }
+        }
     }
 }

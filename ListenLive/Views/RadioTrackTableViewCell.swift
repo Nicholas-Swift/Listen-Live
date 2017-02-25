@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class RadioTrackTableViewCell: UITableViewCell {
     
@@ -16,6 +17,8 @@ class RadioTrackTableViewCell: UITableViewCell {
     @IBOutlet weak var trackPostedByLabel: UILabel!
     @IBOutlet weak var trackAddButton: UIButton!
     
+    var request: Request?
+    
     // MARK: - View Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,6 +26,11 @@ class RadioTrackTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        
+        request?.cancel()
+        thumbnailImageView.image = nil
+        trackTitleLabel.text = "Loading..."
+        trackPostedByLabel.text = ""
     }
     
 }

@@ -105,34 +105,44 @@ extension SearchViewModel {
     }
     
     func numberOfRowsIn(section: Int) -> Int {
-//        switch section {
-//        case 0:
-//            return recentTracks.count
-//        case 1:
-//            return popularTracks.count
-//        default:
-//            return savedTracks.count
-//        }
+        switch section {
+        case 0:
+            return recentTracks.count
+        case 1:
+            return popularTracks.count
+        default:
+            return savedTracks.count
+        }
         
         return 5
     }
     
     func setupRadioTrackTableViewCell(cell: RadioTrackTableViewCell, at indexPath: IndexPath) {
         
-//        // Get correct track
-//        let track: Track!
-//        switch indexPath.section {
-//        case 0:
-//            track = recentTracks[indexPath.row]
-//        case 1:
-//            track = popularTracks[indexPath.row]
-//        default:
-//            track = savedTracks[indexPath.row]
-//        }
-//        
-//        // Setup cell with that track information
-//        cell.trackTitleLabel.text = track.title
-//        cell.trackPostedByLabel.text = track.songId
+        // Get correct track
+        let track: Track!
+        switch indexPath.section {
+        case 0:
+            track = recentTracks[indexPath.row]
+        case 1:
+            track = popularTracks[indexPath.row]
+        default:
+            track = savedTracks[indexPath.row]
+        }
+        
+        // Setup cell with that track information
+        cell.trackTitleLabel.text = track.title
+        cell.trackPostedByLabel.text = track.songId
+        cell.request = YouTubeService.downloadImage(url: track.thumbnailURL, completionHandler: { (image, error) in
+            if let error = error {
+                print(error)
+                return
+            }
+            
+            UIView.transition(with: cell.thumbnailImageView, duration: 1, options: UIViewAnimationOptions.transitionCrossDissolve, animations: {
+                cell.thumbnailImageView.image = image
+            })
+        })
     }
     
 }
