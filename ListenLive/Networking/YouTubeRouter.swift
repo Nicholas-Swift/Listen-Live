@@ -23,15 +23,25 @@ enum YoutubeRouter: URLRequestConvertible {
         }
     }
     
-    var parameters: [String: Any]? {
+    var parameters: [String: Any] {
+        var parametersDict: [String: Any] = [:]
+        parametersDict["part"] = "snippet"
+        parametersDict["key"] = NetworkingConstants.youtubeAPIKey
+        
         switch self {
         case let .search(term, amount):
-            return ["part": "snippet", "q": term,  "maxResults" : amount, "type" : "video"]
+            parametersDict["q"] = term
+            parametersDict["maxResults"] = amount
+            parametersDict["type"] = "video"
         case let .popular(amount):
-            return ["part" : "snippet", "chart": "mostPopular", "videoCategoryId": 10, "maxResults" : amount]
+            parametersDict["chart"] = "mostPopular"
+            parametersDict["videoCategoryId"] = 10
+            parametersDict["maxResults"] = amount
         case let .getTrack(id):
-            return ["part": "snippet", "id": id]
+            parametersDict["id"] = id
         }
+        
+        return parametersDict
     }
     
     var method: HTTPMethod {
@@ -45,10 +55,6 @@ enum YoutubeRouter: URLRequestConvertible {
         let url = try NetworkingConstants.youtubeURL.asURL()
         var urlRequest = URLRequest(url: url.appendingPathComponent(path))
         urlRequest.httpMethod = method.rawValue
-        
-        if var parameters = parameters {
-            parameters["key"] = NetworkingConstants.youtubeAPIKey
-        }
         
         return try URLEncoding.methodDependent.encode(urlRequest, with: parameters)
     }
