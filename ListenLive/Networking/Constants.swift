@@ -8,7 +8,13 @@
 
 import Foundation
 
-struct NetworkingConstants {
-    static let youtubeURL = "https://www.googleapis.com/youtube/v3/"
-    static let youtubeAPIKey = "AIzaSyByQInEnZkxYp-3hRVQrBgHWOu4EPtD9vo"
+struct Constants {
+    struct UserDefaults {
+        
+    }
+    
+    struct Networking {
+        static let youtubeURL = "https://www.googleapis.com/youtube/v3/"
+        static let youtubeAPIKey = "AIzaSyByQInEnZkxYp-3hRVQrBgHWOu4EPtD9vo"
+    }
 }
