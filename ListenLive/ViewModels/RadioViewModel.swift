@@ -17,6 +17,10 @@ extension RadioViewModel {
         return 44
     }
     
+    func heightForRadioControlsTableViewCell() -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
     func heightForRadioTrackTableViewCell() -> CGFloat {
         return 70
     }
@@ -35,6 +39,10 @@ extension RadioViewModel {
     }
     
     func setupRadioNavigationTableViewCell(cell: UITableViewCell) {
+        // do shit
+    }
+    
+    func setupRadioControlsTableViewCell(cell: UITableViewCell) {
         // do shit
     }
     

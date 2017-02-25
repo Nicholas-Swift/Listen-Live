@@ -66,6 +66,10 @@ extension RadioViewController: UITableViewDelegate {
         case 0:
             return viewModel.heightForRadioNavigationTableViewCell()
             
+        // Radio Controls Table View Cell
+        case 1:
+            return viewModel.heightForRadioControlsTableViewCell()
+            
         // Track Table View Cell
         default:
             return viewModel.heightForRadioTrackTableViewCell()
@@ -92,6 +96,12 @@ extension RadioViewController: UITableViewDataSource {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "RadioNavigationTableViewCell", for: indexPath)
             viewModel.setupRadioNavigationTableViewCell(cell: cell)
+            return cell
+            
+        // Radio Controls Table View Cell
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "RadioControlsTableViewCell", for: indexPath)
+            viewModel.setupRadioControlsTableViewCell(cell: cell)
             return cell
             
         // Track Table View Cell
