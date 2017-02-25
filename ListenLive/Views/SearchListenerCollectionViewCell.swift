@@ -11,12 +11,18 @@ import UIKit
 class SearchListenerCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Subviews
+    @IBOutlet weak var profilePictureImageView: UIImageView!
     
     // MARK: - View Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
-    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        profilePictureImageView.layer.cornerRadius = profilePictureImageView.bounds.width / 2
+        profilePictureImageView.clipsToBounds = true
+    }
     
 }

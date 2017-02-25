@@ -22,6 +22,7 @@ class SearchViewController: UIViewController {
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 0
+        layout.scrollDirection = .horizontal
         let view = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -50,7 +51,9 @@ extension SearchViewController {
         collectionView.register(SearchListenerCollectionViewCell.nib(), forCellWithReuseIdentifier: "SearchListenerCollectionViewCell")
         
         // Style
+        collectionView.backgroundColor = UIColor.clear
         collectionView.alwaysBounceVertical = false
+        collectionView.showsHorizontalScrollIndicator = false
         
         // Add subview
         view.addSubview(collectionView)
@@ -75,7 +78,8 @@ extension SearchViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return collectionView.dequeueReusableCell(withReuseIdentifier: "SearchListenerCollectionViewCell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SearchListenerCollectionViewCell", for: indexPath) as! SearchListenerCollectionViewCell
+        return cell
     }
     
 }
@@ -153,7 +157,7 @@ extension SearchViewController {
         let collectionViewTop = NSLayoutConstraint(item: collectionView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 20)
         let collectionViewLeft = NSLayoutConstraint(item: collectionView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0)
         let collectionViewRight = NSLayoutConstraint(item: collectionView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0)
-        let collectionViewHeight = NSLayoutConstraint(item: collectionView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 44)
+        let collectionViewHeight = NSLayoutConstraint(item: collectionView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 88)
         NSLayoutConstraint.activate([collectionViewTop, collectionViewLeft, collectionViewRight, collectionViewHeight])
         
         // Table View
