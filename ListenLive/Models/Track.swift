@@ -21,7 +21,7 @@ class Track {
     init?(json: JSON) {
         guard
             let title = json[YoutTubeConstants.snippet][YoutTubeConstants.title].string,
-            let songId = json[YoutTubeConstants.id][YoutTubeConstants.videoID].string,
+            let songId = json[YoutTubeConstants.id].string,
             let thumbnailURLString = json[YoutTubeConstants.snippet][YoutTubeConstants.thumbnails][YoutTubeConstants.medium][YoutTubeConstants.url].string,
             let thumbnailURL = URL(string: thumbnailURLString)
         else { return nil }

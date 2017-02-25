@@ -1,5 +1,7 @@
 PODS:
   - Alamofire (4.3.0)
+  - AlamofireImage (3.2.0):
+    - Alamofire (~> 4.1)
   - Bolts (1.8.4):
     - Bolts/AppLinks (= 1.8.4)
     - Bolts/Tasks (= 1.8.4)
@@ -49,6 +51,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.3)
+  - AlamofireImage (~> 3.1)
   - FBSDKCoreKit
   - FBSDKLoginKit
   - Firebase/Auth
@@ -60,6 +63,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
+  AlamofireImage: 157ed682cc81d3b9db4fb90c1f12180ac552d93b
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   FBSDKCoreKit: 894b2b6eda6a4c8c4204e92e59cc355709ef045c
   FBSDKLoginKit: 83ca4d8f12a2022570af9fd6aacf27f6b425b99f
@@ -75,6 +79,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   XCDYouTubeKit: 80eb3978dae220a0116d198bca6852c6c969fa66
 
-PODFILE CHECKSUM: d23827c132a5aa3c7316e9e874faf0b9badd1186
+PODFILE CHECKSUM: a159cd3f75e8111c7ad9b6cfd1c0d664df456ee1
 
 COCOAPODS: 1.1.0.rc.2

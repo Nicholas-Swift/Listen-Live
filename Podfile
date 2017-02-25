@@ -15,6 +15,7 @@ target 'ListenLive' do
   pod "FBSDKCoreKit"
   pod "FBSDKLoginKit"
   pod 'NTPKit'
+  pod 'AlamofireImage', '~> 3.1'
 
 end
 
