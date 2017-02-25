@@ -18,6 +18,15 @@ extension SignInViewModel {
             return
         }
         
-        FIRFacebookAuthProvider.credential(withAccessToken: token)
+        let credential = FIRFacebookAuthProvider.credential(withAccessToken: token)
+        
+        FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
+            if let error = error {
+                print(error)
+                return
+            }
+            
+            
+        })
     }
 }

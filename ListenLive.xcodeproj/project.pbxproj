@@ -24,6 +24,10 @@
 		8851430F84C430FE942A5C1A /* Pods_ListenLive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A61A772A367D55067E6C9B29 /* Pods_ListenLive.framework */; };
 		D33CEAA51E614D6400B8D0EE /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33CEAA41E614D6400B8D0EE /* SignInViewController.swift */; };
 		D33CEAA71E614DA200B8D0EE /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33CEAA61E614DA200B8D0EE /* SignInViewModel.swift */; };
+		D33CEAA91E61517900B8D0EE /* YouTubeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33CEAA81E61517900B8D0EE /* YouTubeRouter.swift */; };
+		D33CEAAB1E61525200B8D0EE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33CEAAA1E61525200B8D0EE /* Constants.swift */; };
+		D33CEAAD1E61571800B8D0EE /* String+ToInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33CEAAC1E61571800B8D0EE /* String+ToInt.swift */; };
+		D33CEAAF1E61578100B8D0EE /* Double+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33CEAAE1E61578100B8D0EE /* Double+Format.swift */; };
 		D3EA5F681E614978002C657F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D3EA5F671E614978002C657F /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +52,10 @@
 		A61A772A367D55067E6C9B29 /* Pods_ListenLive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ListenLive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D33CEAA41E614D6400B8D0EE /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		D33CEAA61E614DA200B8D0EE /* SignInViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		D33CEAA81E61517900B8D0EE /* YouTubeRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeRouter.swift; sourceTree = "<group>"; };
+		D33CEAAA1E61525200B8D0EE /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		D33CEAAC1E61571800B8D0EE /* String+ToInt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+ToInt.swift"; sourceTree = "<group>"; };
+		D33CEAAE1E61578100B8D0EE /* Double+Format.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+Format.swift"; sourceTree = "<group>"; };
 		D3EA5F671E614978002C657F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E77F0675EBAEBB83E6367EE3 /* Pods-ListenLive.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ListenLive.release.xcconfig"; path = "Pods/Target Support Files/Pods-ListenLive/Pods-ListenLive.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -116,6 +124,8 @@
 			children = (
 				01F9148D1E613494001BA236 /* UIView+AutoLayout.swift */,
 				01F9148F1E6134B1001BA236 /* UIResponder+Utilities.swift */,
+				D33CEAAC1E61571800B8D0EE /* String+ToInt.swift */,
+				D33CEAAE1E61578100B8D0EE /* Double+Format.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -168,6 +178,8 @@
 		01F9147B1E6131E3001BA236 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				D33CEAA81E61517900B8D0EE /* YouTubeRouter.swift */,
+				D33CEAAA1E61525200B8D0EE /* Constants.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -324,6 +336,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D33CEAA91E61517900B8D0EE /* YouTubeRouter.swift in Sources */,
+				D33CEAAD1E61571800B8D0EE /* String+ToInt.swift in Sources */,
 				01F9148C1E613326001BA236 /* RadioViewModel.swift in Sources */,
 				01F914611E613141001BA236 /* AppDelegate.swift in Sources */,
 				01F9148A1E61331E001BA236 /* RadioViewController.swift in Sources */,
@@ -331,9 +345,11 @@
 				D33CEAA71E614DA200B8D0EE /* SignInViewModel.swift in Sources */,
 				01F914841E613290001BA236 /* RadioTrackTableViewCell.swift in Sources */,
 				D33CEAA51E614D6400B8D0EE /* SignInViewController.swift in Sources */,
+				D33CEAAF1E61578100B8D0EE /* Double+Format.swift in Sources */,
 				01F914901E6134B1001BA236 /* UIResponder+Utilities.swift in Sources */,
 				01F914881E6132EA001BA236 /* RadioControlsTableViewCell.swift in Sources */,
 				01F914801E613223001BA236 /* RadioNavigationTableViewCell.swift in Sources */,
+				D33CEAAB1E61525200B8D0EE /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
