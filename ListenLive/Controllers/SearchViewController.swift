@@ -125,14 +125,18 @@ extension SearchViewController: UITableViewDelegate {
         return viewModel.heightForFooterIn(section: section)
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return viewModel.titleForHeaderIn(section: section)
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = SearchHeaderView.instanceFromNib() as! SearchHeaderView
+        headerView.translatesAutoresizingMaskIntoConstraints = true
+        headerView.titleHeaderLabel.text = viewModel.titleForHeaderIn(section: section)
+        return headerView
     }
     
 }
 
 // MARK: - Table View Datasource
 extension SearchViewController: UITableViewDataSource {
+    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.numberOfSections()

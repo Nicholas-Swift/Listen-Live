@@ -62,7 +62,12 @@ class FirebaseService {
     
     }
     
-    static func createSession(trackId: String, updateTime: @escaping () -> Void) {
+    static func createSession(trackId: String, completion: (Session) -> Void) {
+        guard Session.currentSession == nil else {
+            completion(Session.currentSession!)
+            return
+        }
+        
         guard let currentUser = FIRAuth.auth()?.currentUser else {
             return
         }
@@ -79,6 +84,39 @@ class FirebaseService {
     }
     
     static func updateState(state: PlayerState, time: TimeInterval) {
+        guard let session = Session.currentSession else {
+            return
+        }
         
+        ref.child(FirebaseConstants.sessions).child(session.id).updateChildValues([FirebaseConstants.state: state.rawValue, FirebaseConstants.timeSetAt: FIRServerValue.timestamp(), FirebaseConstants.time: time])
+    }
+    
+    static func joinSession(id: String, trackChanged: @escaping () -> Void, stateChanged: @escaping () -> Void, timeChanged: @escaping () -> Void) {
+        let sesssionRef = ref.child(FirebaseConstants.sessions).child(id)
+        
+        sesssionRef.child(FirebaseConstants.track).observe(.value, with: { (snapshot) in
+            if snapshot.exists(), let trackId = snapshot.value as? String {
+                Session.currentSession?.trackId = trackId
+                trackChanged()
+            }
+        })
+        
+        sesssionRef.child(FirebaseConstants.state).observe(.value, with: { (snapshot) in
+            if snapshot.exists(), let stateValue = snapshot.value as? String, let state = PlayerState(rawValue: stateValue) {
+                Session.currentSession?.state = state
+                
+                stateChanged()
+            }
+        })
+        
+        sesssionRef.child(FirebaseConstants.time).observe(.value, with: { (snapshot) in
+            sesssionRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                guard let sessionInfo = snapshot.value as? [String: Any], let session = Session(snapshot: sessionInfo, id: snapshot.key) else { return }
+                
+                Session.currentSession?.time = session.time
+                Session.currentSession?.timeSetAt = session.timeSetAt
+                timeChanged()
+            })
+        })
     }
 }

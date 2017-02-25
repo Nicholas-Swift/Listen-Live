@@ -20,21 +20,9 @@ extension RadioViewModel {
         case 1:
             return UITableViewAutomaticDimension
         default:
-            return 70
+            return 80
         }
     }
-    
-//    func heightForRadioNavigationTableViewCell() -> CGFloat {
-//        return 44
-//    }
-//    
-//    func heightForRadioControlsTableViewCell() -> CGFloat {
-//        return UITableViewAutomaticDimension
-//    }
-//    
-//    func heightForRadioTrackTableViewCell() -> CGFloat {
-//        return 70
-//    }
     
 }
 

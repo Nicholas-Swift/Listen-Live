@@ -11,7 +11,7 @@ import UIKit
 class SearchViewModel {
 
     // Table View
-    let sections = ["Active Friends", "Recent", "Popular", "Saved"]
+    let sections = ["Recent", "Popular", "Saved"]
     
 }
 
@@ -19,11 +19,11 @@ class SearchViewModel {
 extension SearchViewModel {
     
     func heightForHeaderIn(section: Int) -> CGFloat {
-        return 40
+        return 60
     }
     
     func heightForFooterIn(section: Int) -> CGFloat {
-        return 20
+        return section == sections.count - 1 ? 20 : CGFloat.leastNonzeroMagnitude
     }
     
     func titleForHeaderIn(section: Int) -> String {
@@ -31,7 +31,7 @@ extension SearchViewModel {
     }
     
     func heightForRowAt(indexPath: IndexPath) -> CGFloat {
-        return 70
+        return 80
     }
     
 }

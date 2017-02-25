@@ -12,6 +12,8 @@
 		010A80D01E616C5300290899 /* SearchListenerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 010A80CF1E616C5300290899 /* SearchListenerCollectionViewCell.xib */; };
 		010A80D21E616C8A00290899 /* SearchListenerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010A80D11E616C8A00290899 /* SearchListenerCollectionViewCell.swift */; };
 		019EDD961E6155E3001C382F /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019EDD951E6155E3001C382F /* Track.swift */; };
+		01CF05B11E61772F0009947F /* SearchHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01CF05B01E61772F0009947F /* SearchHeaderView.xib */; };
+		01CF05B31E6177820009947F /* SearchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CF05B21E6177820009947F /* SearchHeaderView.swift */; };
 		01F914611E613141001BA236 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F914601E613141001BA236 /* AppDelegate.swift */; };
 		01F914661E613141001BA236 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01F914641E613141001BA236 /* Main.storyboard */; };
 		01F914681E613141001BA236 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01F914671E613141001BA236 /* Assets.xcassets */; };
@@ -47,6 +49,8 @@
 		010A80CF1E616C5300290899 /* SearchListenerCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchListenerCollectionViewCell.xib; sourceTree = "<group>"; };
 		010A80D11E616C8A00290899 /* SearchListenerCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchListenerCollectionViewCell.swift; sourceTree = "<group>"; };
 		019EDD951E6155E3001C382F /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
+		01CF05B01E61772F0009947F /* SearchHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchHeaderView.xib; sourceTree = "<group>"; };
+		01CF05B21E6177820009947F /* SearchHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchHeaderView.swift; sourceTree = "<group>"; };
 		01F9145D1E613141001BA236 /* ListenLive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ListenLive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01F914601E613141001BA236 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		01F914651E613141001BA236 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -191,6 +195,8 @@
 		01F9147A1E6131A1001BA236 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				01CF05B21E6177820009947F /* SearchHeaderView.swift */,
+				01CF05B01E61772F0009947F /* SearchHeaderView.xib */,
 				010A80D11E616C8A00290899 /* SearchListenerCollectionViewCell.swift */,
 				010A80CF1E616C5300290899 /* SearchListenerCollectionViewCell.xib */,
 				01F9147F1E613223001BA236 /* RadioNavigationTableViewCell.swift */,
@@ -301,6 +307,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01CF05B11E61772F0009947F /* SearchHeaderView.xib in Resources */,
 				010A80D01E616C5300290899 /* SearchListenerCollectionViewCell.xib in Resources */,
 				01F914821E613280001BA236 /* RadioTrackTableViewCell.xib in Resources */,
 				01F9146B1E613141001BA236 /* LaunchScreen.storyboard in Resources */,
@@ -372,6 +379,7 @@
 				01F9148C1E613326001BA236 /* RadioViewModel.swift in Sources */,
 				010A80C91E615E0300290899 /* SearchViewController.swift in Sources */,
 				D33CEAB91E61849400B8D0EE /* Player.swift in Sources */,
+				01CF05B31E6177820009947F /* SearchHeaderView.swift in Sources */,
 				010A80CB1E615E3000290899 /* SearchViewModel.swift in Sources */,
 				01F914611E613141001BA236 /* AppDelegate.swift in Sources */,
 				D33CEAB31E61769400B8D0EE /* FirebaseService.swift in Sources */,

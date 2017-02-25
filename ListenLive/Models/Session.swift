@@ -10,12 +10,15 @@ import Foundation
 
 class Session {
     
+    static var currentSession: Session?
+    
+    var id: String
     var trackId: String
     var time: TimeInterval
     var timeSetAt: TimeInterval
     var state: PlayerState
     
-    init?(snapshot: [String: Any]) {
+    init?(snapshot: [String: Any], id: String) {
         guard
             let trackId = snapshot[FirebaseConstants.track] as? String,
             let time = snapshot[FirebaseConstants.time] as? TimeInterval,
@@ -23,6 +26,7 @@ class Session {
             let state = snapshot[FirebaseConstants.state] as? String
         else { return nil }
     
+        self.id = id
         self.trackId = trackId
         self.time = time
         self.timeSetAt = timeSetAt
