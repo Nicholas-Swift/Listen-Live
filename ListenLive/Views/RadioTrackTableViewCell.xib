@@ -16,39 +16,50 @@
             <rect key="frame" x="0.0" y="0.0" width="400" height="101"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="g5W-UJ-ebH" id="JNV-X7-XXa">
-                <rect key="frame" x="0.0" y="0.0" width="400" height="100"/>
+                <rect key="frame" x="0.0" y="0.0" width="400" height="101"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LXw-6V-pKp">
-                        <rect key="frame" x="16" y="29" width="44" height="44"/>
+                        <rect key="frame" x="16" y="24" width="54" height="54"/>
                         <color key="backgroundColor" red="0.91764705882352937" green="0.91764705882352937" blue="0.91764705882352937" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="44" id="Yk8-9B-vQa"/>
-                            <constraint firstAttribute="height" constant="44" id="cBn-w2-aoD"/>
+                            <constraint firstAttribute="width" constant="54" id="Yk8-9B-vQa"/>
+                            <constraint firstAttribute="height" constant="54" id="cBn-w2-aoD"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ควันบุหรี่ : FREEHAND (Official Audio)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dyX-Va-Isd">
-                        <rect key="frame" x="76" y="32.5" width="308" height="17"/>
+                        <rect key="frame" x="86" y="32.5" width="270" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FREEHAND BAND" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5SN-vW-TQC">
-                        <rect key="frame" x="76" y="53.5" width="308" height="14.5"/>
+                        <rect key="frame" x="86" y="53.5" width="270" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AvK-lQ-fT0">
+                        <rect key="frame" x="356" y="0.0" width="44" height="100.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="44" id="0fQ-dv-Dtp"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                        <state key="normal" title="+"/>
+                    </button>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailingMargin" secondItem="5SN-vW-TQC" secondAttribute="trailing" constant="8" id="Dq2-36-1Yh"/>
                     <constraint firstItem="dyX-Va-Isd" firstAttribute="centerY" secondItem="LXw-6V-pKp" secondAttribute="centerY" constant="-10" id="EeH-9U-WNx"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="dyX-Va-Isd" secondAttribute="trailing" constant="8" id="IOr-zN-d4z"/>
                     <constraint firstItem="dyX-Va-Isd" firstAttribute="leading" secondItem="LXw-6V-pKp" secondAttribute="trailing" constant="16" id="T6K-BJ-wcR"/>
+                    <constraint firstAttribute="trailing" secondItem="AvK-lQ-fT0" secondAttribute="trailing" id="VcI-26-Yhe"/>
+                    <constraint firstItem="AvK-lQ-fT0" firstAttribute="leading" secondItem="5SN-vW-TQC" secondAttribute="trailing" id="Vyo-1D-Fd7"/>
                     <constraint firstItem="LXw-6V-pKp" firstAttribute="leading" secondItem="JNV-X7-XXa" secondAttribute="leadingMargin" constant="8" id="bkN-fh-usR"/>
                     <constraint firstItem="5SN-vW-TQC" firstAttribute="top" secondItem="dyX-Va-Isd" secondAttribute="bottom" constant="4" id="jd2-Ft-Lxd"/>
                     <constraint firstItem="LXw-6V-pKp" firstAttribute="centerY" secondItem="JNV-X7-XXa" secondAttribute="centerY" id="mjK-KA-WyQ"/>
+                    <constraint firstItem="AvK-lQ-fT0" firstAttribute="leading" secondItem="dyX-Va-Isd" secondAttribute="trailing" id="nvp-vx-NKf"/>
+                    <constraint firstItem="AvK-lQ-fT0" firstAttribute="top" secondItem="JNV-X7-XXa" secondAttribute="top" id="rHp-CI-F8z"/>
                     <constraint firstItem="5SN-vW-TQC" firstAttribute="leading" secondItem="LXw-6V-pKp" secondAttribute="trailing" constant="16" id="u7y-y4-q6h"/>
+                    <constraint firstAttribute="bottom" secondItem="AvK-lQ-fT0" secondAttribute="bottom" id="yWv-Nt-Iwn"/>
                 </constraints>
             </tableViewCellContentView>
             <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
