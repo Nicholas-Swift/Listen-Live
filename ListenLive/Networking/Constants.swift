@@ -9,8 +9,16 @@
 import Foundation
 
 struct Constants {
-    struct UserDefaults {
-        
+
+    
+    struct Social {
+        static let facebook = "facebook"
+    }
+    
+    struct Storyboard {
+        struct Segue {
+            static let toSearchViewController = "toSearchViewController"
+        }
     }
     
     struct Networking {

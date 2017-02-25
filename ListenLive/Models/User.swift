@@ -14,6 +14,7 @@ class User {
     
     // MARK: - Instance Vars
     var userID: Int
+//    var facebookID: Int
     var email: String
     var profilePictureURL: URL?
     var firstName: String

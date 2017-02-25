@@ -45,12 +45,12 @@ enum YoutubeRouter: URLRequestConvertible {
     }
 
     func asURLRequest() throws -> URLRequest {
-        let url = try NetworkingConstants.youtubeURL.asURL()
+        let url = try Constants.Networking.youtubeURL.asURL()
         var urlRequest = URLRequest(url: url.appendingPathComponent(path))
         urlRequest.httpMethod = method.rawValue
         
         if var parameters = parameters {
-            parameters["key"] = NetworkingConstants.youtubeAPIKey
+            parameters["key"] = Constants.Networking.youtubeAPIKey
         }
         
         return try URLEncoding.methodDependent.encode(urlRequest, with: parameters)
