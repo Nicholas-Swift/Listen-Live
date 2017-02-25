@@ -16,6 +16,14 @@ class SearchViewController: UIViewController {
     // MARK: - Subviews
     lazy var tableView: UITableView = {
         let view = UITableView(frame: CGRect.zero, style: .grouped)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 0
+        let view = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -23,9 +31,53 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupCollectionView()
         setupTableView()
         setupConstraints()
     }
+}
+
+// MARK: - Collection View
+extension SearchViewController {
+    
+    func setupCollectionView() {
+        
+        // Delegate and data source
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
+        // Register cells
+        collectionView.register(SearchListenerCollectionViewCell.nib(), forCellWithReuseIdentifier: "SearchListenerCollectionViewCell")
+        
+        // Style
+        collectionView.alwaysBounceVertical = false
+        
+        // Add subview
+        view.addSubview(collectionView)
+    }
+    
+}
+
+// MARK: - Collection View Delegate
+extension SearchViewController: UICollectionViewDelegate {
+    
+}
+
+// MARK: - Collection View Data Source
+extension SearchViewController: UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        return collectionView.dequeueReusableCell(withReuseIdentifier: "SearchListenerCollectionViewCell", for: indexPath)
+    }
+    
 }
 
 // MARK: - Table View
@@ -45,7 +97,7 @@ extension SearchViewController {
         tableView.register(RadioTrackTableViewCell.nib(), forCellReuseIdentifier: "RadioTrackTableViewCell")
         
         // Style
-        tableView.separatorColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.05)
+//        tableView.separatorColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.05)
         
         // Add subview
         view.addSubview(tableView)
@@ -57,7 +109,7 @@ extension SearchViewController {
 extension SearchViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return viewModel.heightForRowAt(indexPath: indexPath)
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -65,7 +117,7 @@ extension SearchViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return CGFloat.leastNonzeroMagnitude
+        return viewModel.heightForFooterIn(section: section)
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -97,13 +149,19 @@ extension SearchViewController {
     
     func setupConstraints() {
         
-        // Table View
-        let top = NSLayoutConstraint(item: tableView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 20)
-        let bottom = NSLayoutConstraint(item: tableView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0)
-        let left = NSLayoutConstraint(item: tableView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0)
-        let right = NSLayoutConstraint(item: tableView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0)
+        // Collection View
+        let collectionViewTop = NSLayoutConstraint(item: collectionView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 20)
+        let collectionViewLeft = NSLayoutConstraint(item: collectionView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0)
+        let collectionViewRight = NSLayoutConstraint(item: collectionView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0)
+        let collectionViewHeight = NSLayoutConstraint(item: collectionView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 44)
+        NSLayoutConstraint.activate([collectionViewTop, collectionViewLeft, collectionViewRight, collectionViewHeight])
         
-        NSLayoutConstraint.activate([top, bottom, left, right])
+        // Table View
+        let tableViewTop = NSLayoutConstraint(item: tableView, attribute: .top, relatedBy: .equal, toItem: collectionView, attribute: .bottom, multiplier: 1, constant: 0)
+        let tableViewBottom = NSLayoutConstraint(item: tableView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0)
+        let tableViewLeft = NSLayoutConstraint(item: tableView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0)
+        let tableViewRight = NSLayoutConstraint(item: tableView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0)
+        NSLayoutConstraint.activate([tableViewTop, tableViewBottom, tableViewLeft, tableViewRight])
     }
     
 }

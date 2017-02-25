@@ -22,15 +22,15 @@ extension SearchViewModel {
         return 40
     }
     
+    func heightForFooterIn(section: Int) -> CGFloat {
+        return 20
+    }
+    
     func titleForHeaderIn(section: Int) -> String {
         return sections[section]
     }
     
     func heightForRowAt(indexPath: IndexPath) -> CGFloat {
-        return 70
-    }
-    
-    func heightForRadioTrackTableViewCell() -> CGFloat {
         return 70
     }
     
