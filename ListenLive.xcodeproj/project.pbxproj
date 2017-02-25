@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0189952C1E614E8200DE78AF /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0189952B1E614E8200DE78AF /* FeedViewController.swift */; };
+		019EDD941E61551C001C382F /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019EDD931E61551C001C382F /* FeedViewModel.swift */; };
+		019EDD961E6155E3001C382F /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019EDD951E6155E3001C382F /* Track.swift */; };
 		01F914611E613141001BA236 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F914601E613141001BA236 /* AppDelegate.swift */; };
 		01F914661E613141001BA236 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01F914641E613141001BA236 /* Main.storyboard */; };
 		01F914681E613141001BA236 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01F914671E613141001BA236 /* Assets.xcassets */; };
@@ -30,6 +32,8 @@
 
 /* Begin PBXFileReference section */
 		0189952B1E614E8200DE78AF /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		019EDD931E61551C001C382F /* FeedViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
+		019EDD951E6155E3001C382F /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		01F9145D1E613141001BA236 /* ListenLive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ListenLive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01F914601E613141001BA236 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		01F914651E613141001BA236 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -126,6 +130,7 @@
 		01F914761E6131A1001BA236 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				019EDD951E6155E3001C382F /* Track.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -149,6 +154,7 @@
 		01F914791E6131A1001BA236 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				019EDD931E61551C001C382F /* FeedViewModel.swift */,
 				01F9148B1E613326001BA236 /* RadioViewModel.swift */,
 				D33CEAA61E614DA200B8D0EE /* SignInViewModel.swift */,
 			);
@@ -329,6 +335,7 @@
 			files = (
 				01F9148C1E613326001BA236 /* RadioViewModel.swift in Sources */,
 				0189952C1E614E8200DE78AF /* FeedViewController.swift in Sources */,
+				019EDD941E61551C001C382F /* FeedViewModel.swift in Sources */,
 				01F914611E613141001BA236 /* AppDelegate.swift in Sources */,
 				01F9148A1E61331E001BA236 /* RadioViewController.swift in Sources */,
 				01F9148E1E613494001BA236 /* UIView+AutoLayout.swift in Sources */,
@@ -336,6 +343,7 @@
 				01F914841E613290001BA236 /* RadioTrackTableViewCell.swift in Sources */,
 				D33CEAA51E614D6400B8D0EE /* SignInViewController.swift in Sources */,
 				01F914901E6134B1001BA236 /* UIResponder+Utilities.swift in Sources */,
+				019EDD961E6155E3001C382F /* Track.swift in Sources */,
 				01F914881E6132EA001BA236 /* RadioControlsTableViewCell.swift in Sources */,
 				01F914801E613223001BA236 /* RadioNavigationTableViewCell.swift in Sources */,
 			);

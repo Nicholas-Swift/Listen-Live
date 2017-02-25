@@ -13,7 +13,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="435" id="H8m-ee-2ZW">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="419" id="H8m-ee-2ZW">
             <rect key="frame" x="0.0" y="0.0" width="411" height="439"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="H8m-ee-2ZW" id="EUQ-JN-lRI">
@@ -40,10 +40,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="f2f-1G-I2O">
-                        <rect key="frame" x="14" y="309.5" width="383" height="38"/>
+                        <rect key="frame" x="14" y="309.5" width="383" height="46"/>
                     </slider>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I1h-e1-Wz3">
-                        <rect key="frame" x="91" y="362.5" width="44" height="44"/>
+                        <rect key="frame" x="91" y="370.5" width="44" height="44"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="44" id="P3d-G7-6EZ"/>
                             <constraint firstAttribute="height" constant="44" id="zSy-5M-ojT"/>
@@ -51,7 +51,7 @@
                         <state key="normal" title="Prev"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="got-Z5-eUB">
-                        <rect key="frame" x="183" y="362.5" width="44" height="44"/>
+                        <rect key="frame" x="183" y="370.5" width="44" height="44"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="44" id="1Qd-eE-v8O"/>
                             <constraint firstAttribute="width" constant="44" id="qpd-NY-RGw"/>
@@ -59,7 +59,7 @@
                         <state key="normal" title="Play"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iXg-Ia-NKS">
-                        <rect key="frame" x="275" y="362.5" width="44" height="44"/>
+                        <rect key="frame" x="275" y="370.5" width="44" height="44"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="44" id="FNm-ni-voc"/>
                             <constraint firstAttribute="width" constant="44" id="e3n-CU-txK"/>
@@ -80,7 +80,7 @@
                     <constraint firstAttribute="trailingMargin" secondItem="f2f-1G-I2O" secondAttribute="trailing" constant="8" id="VdA-dq-bdL"/>
                     <constraint firstItem="iXg-Ia-NKS" firstAttribute="leading" secondItem="got-Z5-eUB" secondAttribute="trailing" constant="48" id="de4-hJ-mn4"/>
                     <constraint firstItem="dO7-Rb-Qqs" firstAttribute="top" secondItem="EUQ-JN-lRI" secondAttribute="topMargin" constant="16" id="g5M-a8-HKP"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="got-Z5-eUB" secondAttribute="bottom" constant="24" id="jmj-ws-fjf"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="got-Z5-eUB" secondAttribute="bottom" constant="16" id="jmj-ws-fjf"/>
                     <constraint firstItem="W0k-C3-nwa" firstAttribute="leading" secondItem="EUQ-JN-lRI" secondAttribute="leadingMargin" constant="16" id="lrH-lp-bZM"/>
                     <constraint firstItem="got-Z5-eUB" firstAttribute="centerX" secondItem="EUQ-JN-lRI" secondAttribute="centerX" id="mLu-6U-bWe"/>
                     <constraint firstItem="f2f-1G-I2O" firstAttribute="leading" secondItem="EUQ-JN-lRI" secondAttribute="leadingMargin" constant="8" id="qof-ZJ-UCL"/>
@@ -89,6 +89,7 @@
                     <constraint firstAttribute="trailingMargin" secondItem="W0k-C3-nwa" secondAttribute="trailing" constant="16" id="yQN-F8-nJ7"/>
                 </constraints>
             </tableViewCellContentView>
+            <inset key="separatorInset" minX="100000" minY="0.0" maxX="0.0" maxY="0.0"/>
             <point key="canvasLocation" x="43.5" y="142.5"/>
         </tableViewCell>
     </objects>
