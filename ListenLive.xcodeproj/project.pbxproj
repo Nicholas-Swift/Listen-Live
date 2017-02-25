@@ -12,6 +12,7 @@
 		010A80D01E616C5300290899 /* SearchListenerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 010A80CF1E616C5300290899 /* SearchListenerCollectionViewCell.xib */; };
 		010A80D21E616C8A00290899 /* SearchListenerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010A80D11E616C8A00290899 /* SearchListenerCollectionViewCell.swift */; };
 		018A9B601E6225100023409B /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018A9B5F1E6225100023409B /* ContainerViewController.swift */; };
+		018A9B621E6237E70023409B /* UIImage+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018A9B611E6237E70023409B /* UIImage+Color.swift */; };
 		019EDD961E6155E3001C382F /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019EDD951E6155E3001C382F /* Track.swift */; };
 		01CF05B11E61772F0009947F /* SearchHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01CF05B01E61772F0009947F /* SearchHeaderView.xib */; };
 		01CF05B31E6177820009947F /* SearchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CF05B21E6177820009947F /* SearchHeaderView.swift */; };
@@ -50,6 +51,7 @@
 		010A80CF1E616C5300290899 /* SearchListenerCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchListenerCollectionViewCell.xib; sourceTree = "<group>"; };
 		010A80D11E616C8A00290899 /* SearchListenerCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchListenerCollectionViewCell.swift; sourceTree = "<group>"; };
 		018A9B5F1E6225100023409B /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		018A9B611E6237E70023409B /* UIImage+Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Color.swift"; sourceTree = "<group>"; };
 		019EDD951E6155E3001C382F /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		01CF05B01E61772F0009947F /* SearchHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchHeaderView.xib; sourceTree = "<group>"; };
 		01CF05B21E6177820009947F /* SearchHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchHeaderView.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				01F9148F1E6134B1001BA236 /* UIResponder+Utilities.swift */,
 				D33CEAAC1E61571800B8D0EE /* String+ToInt.swift */,
 				D33CEAAE1E61578100B8D0EE /* Double+Format.swift */,
+				018A9B611E6237E70023409B /* UIImage+Color.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -384,6 +387,7 @@
 				D33CEAB91E61849400B8D0EE /* Player.swift in Sources */,
 				01CF05B31E6177820009947F /* SearchHeaderView.swift in Sources */,
 				010A80CB1E615E3000290899 /* SearchViewModel.swift in Sources */,
+				018A9B621E6237E70023409B /* UIImage+Color.swift in Sources */,
 				01F914611E613141001BA236 /* AppDelegate.swift in Sources */,
 				D33CEAB31E61769400B8D0EE /* FirebaseService.swift in Sources */,
 				01F9148A1E61331E001BA236 /* RadioViewController.swift in Sources */,

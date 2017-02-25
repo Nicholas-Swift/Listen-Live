@@ -15,6 +15,8 @@ class SearchViewController: UIViewController {
     let viewModel = SearchViewModel()
     
     // MARK: - Subviews
+    lazy var navItem = UINavigationItem()
+    var searchController: UISearchController!
     lazy var tableView: UITableView = {
         let view = UITableView(frame: CGRect.zero, style: .grouped)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -38,11 +40,42 @@ class SearchViewController: UIViewController {
         viewModel.getPopularTracks() { [weak self] in self?.tableView.reloadData() }
         viewModel.getSavedTracks() { [weak self] in self?.tableView.reloadData() }
         
-        // Set up subviews
+        // Set up other subviews
+        setupSearchController()
         setupCollectionView()
         setupTableView()
         setupConstraints()
     }
+}
+
+// MARK: - Search Controller
+extension SearchViewController: UISearchControllerDelegate, UISearchResultsUpdating, UISearchBarDelegate {
+    
+    func setupSearchController() {
+        
+        // Logic
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.delegate = self
+        searchController.searchBar.delegate = self
+        
+        // Style
+        let tempColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1)
+        view.backgroundColor = tempColor
+        searchController.searchBar.backgroundImage = UIImage.withColor(color: tempColor)
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.dimsBackgroundDuringPresentation = false
+        
+        // Add subview
+        navItem.titleView = searchController.searchBar
+        navItem.titleView?.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(navItem.titleView!)
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        print("yo")
+    }
+    
 }
 
 // MARK: - Collection View
@@ -164,8 +197,15 @@ extension SearchViewController {
     
     func setupConstraints() {
         
+        // Navigation Bar
+        let navigationTop = NSLayoutConstraint(item: navItem.titleView!, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 20)
+        let navigationLeft = NSLayoutConstraint(item: navItem.titleView!, attribute: .left, relatedBy: .equal, toItem: view, attribute: .left, multiplier: 1, constant: 0)
+        let navigationRight = NSLayoutConstraint(item: navItem.titleView!, attribute: .right, relatedBy: .equal, toItem: view, attribute: .right, multiplier: 1, constant: 0)
+        let navigationHeight = NSLayoutConstraint(item: navItem.titleView!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 44)
+        NSLayoutConstraint.activate([navigationTop, navigationLeft, navigationRight, navigationHeight])
+        
         // Collection View
-        let collectionViewTop = NSLayoutConstraint(item: collectionView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 20)
+        let collectionViewTop = NSLayoutConstraint(item: collectionView, attribute: .top, relatedBy: .equal, toItem: navItem.titleView, attribute: .bottom, multiplier: 1, constant: 0)
         let collectionViewLeft = NSLayoutConstraint(item: collectionView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0)
         let collectionViewRight = NSLayoutConstraint(item: collectionView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0)
         let collectionViewHeight = NSLayoutConstraint(item: collectionView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 88)
