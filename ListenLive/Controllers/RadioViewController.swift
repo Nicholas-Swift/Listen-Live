@@ -62,20 +62,7 @@ extension RadioViewController {
 extension RadioViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch(indexPath.row) {
-            
-        // Radio Navigation Table View Cell
-        case 0:
-            return viewModel.heightForRadioNavigationTableViewCell()
-            
-        // Radio Controls Table View Cell
-        case 1:
-            return viewModel.heightForRadioControlsTableViewCell()
-            
-        // Track Table View Cell
-        default:
-            return viewModel.heightForRadioTrackTableViewCell()
-        }
+        return viewModel.heightForRowAt(indexPath: indexPath)
     }
     
 }

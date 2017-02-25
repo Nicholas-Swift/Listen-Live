@@ -1,5 +1,5 @@
 //
-//  FeedViewController.swift
+//  SearchViewController.swift
 //  ListenLive
 //
 //  Created by Nicholas Swift on 2/24/17.
@@ -8,10 +8,10 @@
 
 import UIKit
 
-class FeedViewController: UIViewController {
+class SearchViewController: UIViewController {
     
     // MARK: - Instance Vars
-    let viewModel = FeedViewModel()
+    let viewModel = SearchViewModel()
     
     // MARK: - Subviews
     lazy var tableView: UITableView = {
@@ -26,11 +26,10 @@ class FeedViewController: UIViewController {
         setupTableView()
         setupConstraints()
     }
-    
 }
 
 // MARK: - Table View
-extension FeedViewController {
+extension SearchViewController {
     
     func setupTableView() {
         
@@ -43,8 +42,6 @@ extension FeedViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         
         // Register cells
-        tableView.register(RadioNavigationTableViewCell.nib(), forCellReuseIdentifier: "RadioNavigationTableViewCell")
-        tableView.register(RadioControlsTableViewCell.nib(), forCellReuseIdentifier: "RadioControlsTableViewCell")
         tableView.register(RadioTrackTableViewCell.nib(), forCellReuseIdentifier: "RadioTrackTableViewCell")
         
         // Style
@@ -57,24 +54,28 @@ extension FeedViewController {
 }
 
 // MARK: - Table View Delegate
-extension FeedViewController: UITableViewDelegate {
+extension SearchViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 5
+        return viewModel.heightForHeaderIn(section: section)
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 5
+        return CGFloat.leastNonzeroMagnitude
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return viewModel.titleForHeaderIn(section: section)
     }
     
 }
 
 // MARK: - Table View Datasource
-extension FeedViewController: UITableViewDataSource {
+extension SearchViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.numberOfSections()
@@ -85,13 +86,14 @@ extension FeedViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RadioTrackTableViewCell")!
+        return cell
     }
     
 }
 
 // MARK: - Auto Layout
-extension FeedViewController {
+extension SearchViewController {
     
     func setupConstraints() {
         

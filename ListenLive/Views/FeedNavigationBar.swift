@@ -12,9 +12,8 @@ class FeedNavigationBar: UIView {
     
     // MARK: - Subviews
     
-    // MARK: - View Lifecycle
-    init() {
-        <#statements#>
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func layoutSubviews() {
