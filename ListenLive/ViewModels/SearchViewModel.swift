@@ -113,8 +113,6 @@ extension SearchViewModel {
         default:
             return savedTracks.count
         }
-        
-        return 5
     }
     
     func setupRadioTrackTableViewCell(cell: RadioTrackTableViewCell, at indexPath: IndexPath) {

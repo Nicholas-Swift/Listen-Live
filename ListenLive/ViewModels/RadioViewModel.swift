@@ -42,7 +42,11 @@ extension RadioViewModel {
     }
     
     func setupRadioControlsTableViewCell(cell: UITableViewCell) {
-        // do shit
+        guard let cell = cell as? RadioControlsTableViewCell else {
+            return
+        }
+        
+        cell.setup()
     }
     
     func setupRadioTrackTableViewCell(cell: UITableViewCell, indexPath: IndexPath) {
