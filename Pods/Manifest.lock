@@ -1,0 +1,18 @@
+PODS:
+  - Alamofire (4.3.0)
+  - SwiftyJSON (3.1.4)
+  - XCDYouTubeKit (2.5.4)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.3)
+  - SwiftyJSON
+  - XCDYouTubeKit (~> 2.5)
+
+SPEC CHECKSUMS:
+  Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  XCDYouTubeKit: 80eb3978dae220a0116d198bca6852c6c969fa66
+
+PODFILE CHECKSUM: '08da7045b7c0f45dad1b98b8bbcb39713d678efd'
+
+COCOAPODS: 1.0.1
