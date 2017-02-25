@@ -23,6 +23,8 @@
 		01F9148E1E613494001BA236 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F9148D1E613494001BA236 /* UIView+AutoLayout.swift */; };
 		01F914901E6134B1001BA236 /* UIResponder+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F9148F1E6134B1001BA236 /* UIResponder+Utilities.swift */; };
 		8851430F84C430FE942A5C1A /* Pods_ListenLive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A61A772A367D55067E6C9B29 /* Pods_ListenLive.framework */; };
+		D33CEAA51E614D6400B8D0EE /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33CEAA41E614D6400B8D0EE /* SignInViewController.swift */; };
+		D33CEAA71E614DA200B8D0EE /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33CEAA61E614DA200B8D0EE /* SignInViewModel.swift */; };
 		D3EA5F681E614978002C657F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D3EA5F671E614978002C657F /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +48,8 @@
 		01F9148F1E6134B1001BA236 /* UIResponder+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIResponder+Utilities.swift"; sourceTree = "<group>"; };
 		5B545ED6FC361731C05B54B9 /* Pods-ListenLive.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ListenLive.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ListenLive/Pods-ListenLive.debug.xcconfig"; sourceTree = "<group>"; };
 		A61A772A367D55067E6C9B29 /* Pods_ListenLive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ListenLive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D33CEAA41E614D6400B8D0EE /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		D33CEAA61E614DA200B8D0EE /* SignInViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		D3EA5F671E614978002C657F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E77F0675EBAEBB83E6367EE3 /* Pods-ListenLive.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ListenLive.release.xcconfig"; path = "Pods/Target Support Files/Pods-ListenLive/Pods-ListenLive.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -105,6 +109,7 @@
 			children = (
 				0189952B1E614E8200DE78AF /* FeedViewController.swift */,
 				01F914891E61331E001BA236 /* RadioViewController.swift */,
+				D33CEAA41E614D6400B8D0EE /* SignInViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -145,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				01F9148B1E613326001BA236 /* RadioViewModel.swift */,
+				D33CEAA61E614DA200B8D0EE /* SignInViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -326,7 +332,9 @@
 				01F914611E613141001BA236 /* AppDelegate.swift in Sources */,
 				01F9148A1E61331E001BA236 /* RadioViewController.swift in Sources */,
 				01F9148E1E613494001BA236 /* UIView+AutoLayout.swift in Sources */,
+				D33CEAA71E614DA200B8D0EE /* SignInViewModel.swift in Sources */,
 				01F914841E613290001BA236 /* RadioTrackTableViewCell.swift in Sources */,
+				D33CEAA51E614D6400B8D0EE /* SignInViewController.swift in Sources */,
 				01F914901E6134B1001BA236 /* UIResponder+Utilities.swift in Sources */,
 				01F914881E6132EA001BA236 /* RadioControlsTableViewCell.swift in Sources */,
 				01F914801E613223001BA236 /* RadioNavigationTableViewCell.swift in Sources */,
@@ -455,7 +463,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 44VHEK9HHH;
 				INFOPLIST_FILE = ListenLive/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nicholas-swift.ListenLive";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -470,7 +478,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 44VHEK9HHH;
 				INFOPLIST_FILE = ListenLive/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nicholas-swift.ListenLive";
 				PRODUCT_NAME = "$(TARGET_NAME)";
