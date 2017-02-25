@@ -34,8 +34,6 @@ enum YoutubeRouter: URLRequestConvertible {
             return ["part" : "snippet", "chart": "mostPopular", "videoCategoryId": 10]
         case let .getTrack(id):
             return ["part": "snippet", "id": id]
-        default:
-            return nil
         }
     }
     

@@ -484,6 +484,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5B545ED6FC361731C05B54B9 /* Pods-ListenLive.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 44VHEK9HHH;
 				INFOPLIST_FILE = ListenLive/Info.plist;
@@ -499,6 +500,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E77F0675EBAEBB83E6367EE3 /* Pods-ListenLive.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 44VHEK9HHH;
 				INFOPLIST_FILE = ListenLive/Info.plist;
