@@ -49,6 +49,8 @@ extension RadioViewController {
         
         // Style
         tableView.separatorColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.05)
+        tableView.allowsSelection = false
+        tableView.showsVerticalScrollIndicator = false
         
         // Add subview
         view.addSubview(tableView)

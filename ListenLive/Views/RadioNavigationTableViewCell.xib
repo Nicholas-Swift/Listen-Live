@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="t6o-vV-5fC" id="TcB-E8-RG9">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SCw-Jq-y2A">
@@ -36,7 +36,7 @@
                         <constraints>
                             <constraint firstAttribute="width" constant="66" id="umr-A7-thB"/>
                         </constraints>
-                        <state key="normal" title="X" image="ic_nav_x"/>
+                        <state key="normal" image="ic_nav_x"/>
                     </button>
                 </subviews>
                 <constraints>

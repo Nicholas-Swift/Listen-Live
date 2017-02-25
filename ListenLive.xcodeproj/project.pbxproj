@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0189952C1E614E8200DE78AF /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0189952B1E614E8200DE78AF /* FeedViewController.swift */; };
 		01F914611E613141001BA236 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F914601E613141001BA236 /* AppDelegate.swift */; };
 		01F914661E613141001BA236 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01F914641E613141001BA236 /* Main.storyboard */; };
 		01F914681E613141001BA236 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01F914671E613141001BA236 /* Assets.xcassets */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0189952B1E614E8200DE78AF /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		01F9145D1E613141001BA236 /* ListenLive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ListenLive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01F914601E613141001BA236 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		01F914651E613141001BA236 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 		01F914741E6131A1001BA236 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				0189952B1E614E8200DE78AF /* FeedViewController.swift */,
 				01F914891E61331E001BA236 /* RadioViewController.swift */,
 			);
 			path = Controllers;
@@ -225,7 +228,7 @@
 				TargetAttributes = {
 					01F9145C1E613141001BA236 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = T9X8M5MFNM;
+						DevelopmentTeam = 44VHEK9HHH;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -278,7 +281,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		D70B598B138242541505B582 /* [CP] Embed Pods Frameworks */ = {
@@ -319,6 +322,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				01F9148C1E613326001BA236 /* RadioViewModel.swift in Sources */,
+				0189952C1E614E8200DE78AF /* FeedViewController.swift in Sources */,
 				01F914611E613141001BA236 /* AppDelegate.swift in Sources */,
 				01F9148A1E61331E001BA236 /* RadioViewController.swift in Sources */,
 				01F9148E1E613494001BA236 /* UIView+AutoLayout.swift in Sources */,
@@ -449,7 +453,7 @@
 			baseConfigurationReference = 5B545ED6FC361731C05B54B9 /* Pods-ListenLive.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = T9X8M5MFNM;
+				DEVELOPMENT_TEAM = 44VHEK9HHH;
 				INFOPLIST_FILE = ListenLive/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -464,7 +468,7 @@
 			baseConfigurationReference = E77F0675EBAEBB83E6367EE3 /* Pods-ListenLive.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = T9X8M5MFNM;
+				DEVELOPMENT_TEAM = 44VHEK9HHH;
 				INFOPLIST_FILE = ListenLive/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
