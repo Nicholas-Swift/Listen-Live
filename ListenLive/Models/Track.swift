@@ -7,19 +7,27 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class Track {
     
     // MARK: - Instance Vars
-    var songId: String!
-    var title: String!
-    var thumbnailURL: String!
+    var songId: String
+    var title: String
+    var thumbnailURL: URL
     
     // MARK: - Init
-    init?(data: [String: AnyObject]) {
+    init?(json: JSON) {
+        guard
+            let title = json[YoutTubeConstants.snippet][YoutTubeConstants.title].string,
+            let songId = json[YoutTubeConstants.id][YoutTubeConstants.videoID].string,
+            let thumbnailURLString = json[YoutTubeConstants.snippet][YoutTubeConstants.thumbnails][YoutTubeConstants.medium][YoutTubeConstants.url].string,
+            let thumbnailURL = URL(string: thumbnailURLString)
+        else { return nil }
         
-        // Parse json shit here
-        
+        self.title = title
+        self.songId = songId
+        self.thumbnailURL = thumbnailURL
     }
     
 }

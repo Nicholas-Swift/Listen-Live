@@ -11,15 +11,14 @@ import Alamofire
 enum YoutubeRouter: URLRequestConvertible {
     
     case search(term: String, amount: Int)
-    case duration(youtubeID: String)
-    case popular
+    case popular(amount: Int)
     case getTrack(id: String)
     
     var path: String {
         switch self {
         case .search:
             return "search"
-        case .duration, .popular, .getTrack:
+        case .popular, .getTrack:
             return "videos"
         }
     }
@@ -28,10 +27,8 @@ enum YoutubeRouter: URLRequestConvertible {
         switch self {
         case let .search(term, amount):
             return ["part": "snippet", "q": term,  "maxResults" : amount, "type" : "video"]
-        case let .duration(id):
-            return ["part": "contentDetails", "id" : id]
-        case .popular:
-            return ["part" : "snippet", "chart": "mostPopular", "videoCategoryId": 10]
+        case let .popular(amount):
+            return ["part" : "snippet", "chart": "mostPopular", "videoCategoryId": 10, "maxResults" : amount]
         case let .getTrack(id):
             return ["part": "snippet", "id": id]
         }
@@ -39,7 +36,7 @@ enum YoutubeRouter: URLRequestConvertible {
     
     var method: HTTPMethod {
         switch self {
-        case .search, .duration, .popular, .getTrack:
+        case .search, .popular, .getTrack:
             return .get
         }
     }
