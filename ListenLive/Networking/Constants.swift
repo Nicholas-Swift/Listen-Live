@@ -26,3 +26,28 @@ struct YoutTubeConstants {
     static let videoID = "videoId"
     static let items = "items"
 }
+
+struct FirebaseConstants {
+    static let users = "users"
+    static let tracks = "tracks"
+    static let history = "history"
+    static let sessions = "sessions"
+    
+    
+    
+    static let name = "name"
+    static let profilePictureURL = "profilePictureURL"
+    static let facebookID = "facebookID"
+    static let email = "email"
+    
+    
+    static let title = "title"
+    static let songId = "songId"
+    static let thumbnail = "thumbnail"
+    static let session = "session"
+    
+    static let track = "track"
+    static let time = "time"
+    static let timeSetAt = "timeSetAt"
+    static let state = "state"
+}

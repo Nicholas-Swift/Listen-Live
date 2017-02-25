@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+import FirebaseDatabase
 
 class Track {
     
@@ -30,4 +31,21 @@ class Track {
         self.thumbnailURL = thumbnailURL
     }
     
+    init?(snapshot: [String: Any]) {
+        guard
+            let title = snapshot[FirebaseConstants.title] as? String,
+            let songId = snapshot[FirebaseConstants.songId] as? String,
+            let thumbnailURLString = snapshot[FirebaseConstants.thumbnail] as? String,
+            let thumbnailURL = URL(string: thumbnailURLString)
+        else { return nil }
+        
+        self.title = title
+        self.songId = songId
+        self.thumbnailURL = thumbnailURL
+    }
+    
+    
+    func toJSON() -> [String: AnyHashable] {
+        return [FirebaseConstants.title: title, FirebaseConstants.songId: songId, FirebaseConstants.thumbnail: thumbnailURL.absoluteString]
+    }
 }

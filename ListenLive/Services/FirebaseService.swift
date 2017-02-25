@@ -1,0 +1,84 @@
+//
+//  FirebaseService.swift
+//  ListenLive
+//
+//  Created by Brian Hans on 2/25/17.
+//  Copyright © 2017 Nicholas Swift. All rights reserved.
+//
+
+import FirebaseDatabase
+import FirebaseAuth
+
+class FirebaseService {
+    
+    static let ref = FIRDatabase.database().reference()
+    
+    static func listenToFriends(startedListening: () -> Void) {
+        
+    }
+    
+    static func getSavedTracks(completionHandler: @escaping ([Track], Error?) -> Void) {
+        guard let currentUser = FIRAuth.auth()?.currentUser else {
+            completionHandler([], nil)
+            return
+        }
+        
+        ref.child(FirebaseConstants.tracks).child(currentUser.uid).observe(.value, with: { (snapshot) in
+            guard let tracksJSON = snapshot.value as? [[String: Any]] else {
+                completionHandler([], nil)
+                return
+            }
+            
+            let tracks = tracksJSON.flatMap(Track.init)
+            completionHandler(tracks, nil)
+        })
+    }
+    
+    static func saveTrack(track: Track) {
+        guard let currentUser = FIRAuth.auth()?.currentUser else {
+            return
+        }
+        
+        ref.child(FirebaseConstants.tracks).child(currentUser.uid).child(track.songId).setValue(track.toJSON())
+    }
+    
+    static func removeTrack(track: Track) {
+        guard let currentUser = FIRAuth.auth()?.currentUser else {
+            return
+        }
+        
+        ref.child(FirebaseConstants.tracks).child(currentUser.uid).child(track.songId).removeValue()
+    }
+    
+    static func addToHistory(track: Track) {
+        guard let currentUser = FIRAuth.auth()?.currentUser else {
+            return
+        }
+        
+        ref.child(FirebaseConstants.history).child(currentUser.uid).child(track.songId).setValue(track.toJSON())
+    }
+    
+    static func getHistory(completionHandler: ([Track], Error?) -> Void) {
+    
+    }
+    
+    static func createSession(trackId: String, updateTime: @escaping () -> Void) {
+        guard let currentUser = FIRAuth.auth()?.currentUser else {
+            return
+        }
+        
+        let sessionInfo: [String: Any] = [FirebaseConstants.track: trackId, FirebaseConstants.time: 0, FirebaseConstants.timeSetAt: FIRServerValue.timestamp(), FirebaseConstants.users: [currentUser.uid: true], FirebaseConstants.state: PlayerState.playing.rawValue]
+        
+        let sessionRef = ref.child(FirebaseConstants.sessions).childByAutoId()
+        sessionRef.setValue(sessionInfo)
+        
+        let userSessionRef = ref.child(FirebaseConstants.users).child(currentUser.uid).child(FirebaseConstants.session)
+        userSessionRef.setValue(sessionRef.key)
+        
+        userSessionRef.onDisconnectRemoveValue()
+    }
+    
+    static func updateState(state: PlayerState, time: TimeInterval) {
+        
+    }
+}

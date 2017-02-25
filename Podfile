@@ -11,8 +11,10 @@ target 'ListenLive' do
   pod 'SwiftyJSON'
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
+  pod 'Firebase/Database'
   pod "FBSDKCoreKit"
   pod "FBSDKLoginKit"
+  pod 'NTPKit'
 
 end
 

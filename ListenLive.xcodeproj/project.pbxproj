@@ -34,6 +34,10 @@
 		D33CEAAD1E61571800B8D0EE /* String+ToInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33CEAAC1E61571800B8D0EE /* String+ToInt.swift */; };
 		D33CEAAF1E61578100B8D0EE /* Double+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33CEAAE1E61578100B8D0EE /* Double+Format.swift */; };
 		D33CEAB11E61591B00B8D0EE /* YouTubeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33CEAB01E61591B00B8D0EE /* YouTubeService.swift */; };
+		D33CEAB31E61769400B8D0EE /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33CEAB21E61769400B8D0EE /* FirebaseService.swift */; };
+		D33CEAB51E617EFA00B8D0EE /* PlayerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33CEAB41E617EFA00B8D0EE /* PlayerState.swift */; };
+		D33CEAB71E61806600B8D0EE /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33CEAB61E61806600B8D0EE /* Session.swift */; };
+		D33CEAB91E61849400B8D0EE /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33CEAB81E61849400B8D0EE /* Player.swift */; };
 		D3EA5F681E614978002C657F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D3EA5F671E614978002C657F /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +72,10 @@
 		D33CEAAC1E61571800B8D0EE /* String+ToInt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+ToInt.swift"; sourceTree = "<group>"; };
 		D33CEAAE1E61578100B8D0EE /* Double+Format.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+Format.swift"; sourceTree = "<group>"; };
 		D33CEAB01E61591B00B8D0EE /* YouTubeService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeService.swift; sourceTree = "<group>"; };
+		D33CEAB21E61769400B8D0EE /* FirebaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
+		D33CEAB41E617EFA00B8D0EE /* PlayerState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerState.swift; sourceTree = "<group>"; };
+		D33CEAB61E61806600B8D0EE /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		D33CEAB81E61849400B8D0EE /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Player.swift; path = ListenLive/Models/Player.swift; sourceTree = SOURCE_ROOT; };
 		D3EA5F671E614978002C657F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E77F0675EBAEBB83E6367EE3 /* Pods-ListenLive.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ListenLive.release.xcconfig"; path = "Pods/Target Support Files/Pods-ListenLive/Pods-ListenLive.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -147,6 +155,8 @@
 			isa = PBXGroup;
 			children = (
 				019EDD951E6155E3001C382F /* Track.swift */,
+				D33CEAB41E617EFA00B8D0EE /* PlayerState.swift */,
+				D33CEAB61E61806600B8D0EE /* Session.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -163,6 +173,7 @@
 		01F914781E6131A1001BA236 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				D33CEAB81E61849400B8D0EE /* Player.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -205,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				D33CEAB01E61591B00B8D0EE /* YouTubeService.swift */,
+				D33CEAB21E61769400B8D0EE /* FirebaseService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -315,7 +327,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		D70B598B138242541505B582 /* [CP] Embed Pods Frameworks */ = {
@@ -359,11 +371,14 @@
 				D33CEAAD1E61571800B8D0EE /* String+ToInt.swift in Sources */,
 				01F9148C1E613326001BA236 /* RadioViewModel.swift in Sources */,
 				010A80C91E615E0300290899 /* SearchViewController.swift in Sources */,
+				D33CEAB91E61849400B8D0EE /* Player.swift in Sources */,
 				010A80CB1E615E3000290899 /* SearchViewModel.swift in Sources */,
 				01F914611E613141001BA236 /* AppDelegate.swift in Sources */,
+				D33CEAB31E61769400B8D0EE /* FirebaseService.swift in Sources */,
 				01F9148A1E61331E001BA236 /* RadioViewController.swift in Sources */,
 				01F9148E1E613494001BA236 /* UIView+AutoLayout.swift in Sources */,
 				D33CEAA71E614DA200B8D0EE /* SignInViewModel.swift in Sources */,
+				D33CEAB51E617EFA00B8D0EE /* PlayerState.swift in Sources */,
 				01F914841E613290001BA236 /* RadioTrackTableViewCell.swift in Sources */,
 				010A80D21E616C8A00290899 /* SearchListenerCollectionViewCell.swift in Sources */,
 				D33CEAA51E614D6400B8D0EE /* SignInViewController.swift in Sources */,
@@ -371,6 +386,7 @@
 				01F914901E6134B1001BA236 /* UIResponder+Utilities.swift in Sources */,
 				019EDD961E6155E3001C382F /* Track.swift in Sources */,
 				01F914881E6132EA001BA236 /* RadioControlsTableViewCell.swift in Sources */,
+				D33CEAB71E61806600B8D0EE /* Session.swift in Sources */,
 				D33CEAB11E61591B00B8D0EE /* YouTubeService.swift in Sources */,
 				01F914801E613223001BA236 /* RadioNavigationTableViewCell.swift in Sources */,
 				D33CEAAB1E61525200B8D0EE /* Constants.swift in Sources */,
