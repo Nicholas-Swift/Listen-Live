@@ -33,6 +33,12 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Get tracks
+        viewModel.getRecentTracks() { [weak self] in self?.tableView.reloadData() }
+        viewModel.getPopularTracks() { [weak self] in self?.tableView.reloadData() }
+        viewModel.getSavedTracks() { [weak self] in self?.tableView.reloadData() }
+        
+        // Set up subviews
         setupCollectionView()
         setupTableView()
         setupConstraints()
@@ -137,17 +143,17 @@ extension SearchViewController: UITableViewDelegate {
 // MARK: - Table View Datasource
 extension SearchViewController: UITableViewDataSource {
     
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.numberOfSections()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfRows()
+        return viewModel.numberOfRowsIn(section: section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "RadioTrackTableViewCell")!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RadioTrackTableViewCell") as! RadioTrackTableViewCell
+        viewModel.setupRadioTrackTableViewCell(cell: cell, at: indexPath)
         return cell
     }
     

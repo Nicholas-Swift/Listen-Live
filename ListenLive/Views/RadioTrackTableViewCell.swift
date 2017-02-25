@@ -11,6 +11,10 @@ import UIKit
 class RadioTrackTableViewCell: UITableViewCell {
     
     // MARK: - Subviews
+    @IBOutlet weak var thumbnailImageView: UIImageView!
+    @IBOutlet weak var trackTitleLabel: UILabel!
+    @IBOutlet weak var trackPostedByLabel: UILabel!
+    @IBOutlet weak var trackAddButton: UIButton!
     
     // MARK: - View Lifecycle
     override func awakeFromNib() {
