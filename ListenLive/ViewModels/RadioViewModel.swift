@@ -13,17 +13,28 @@ class RadioViewModel {}
 // MARK: - Table View Delegate
 extension RadioViewModel {
     
-    func heightForRadioNavigationTableViewCell() -> CGFloat {
-        return 44
+    func heightForRowAt(indexPath: IndexPath) -> CGFloat {
+        switch(indexPath.row) {
+        case 0:
+            return 44
+        case 1:
+            return UITableViewAutomaticDimension
+        default:
+            return 70
+        }
     }
     
-    func heightForRadioControlsTableViewCell() -> CGFloat {
-        return UITableViewAutomaticDimension
-    }
-    
-    func heightForRadioTrackTableViewCell() -> CGFloat {
-        return 70
-    }
+//    func heightForRadioNavigationTableViewCell() -> CGFloat {
+//        return 44
+//    }
+//    
+//    func heightForRadioControlsTableViewCell() -> CGFloat {
+//        return UITableViewAutomaticDimension
+//    }
+//    
+//    func heightForRadioTrackTableViewCell() -> CGFloat {
+//        return 70
+//    }
     
 }
 

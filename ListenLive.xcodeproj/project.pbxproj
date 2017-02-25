@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0189952C1E614E8200DE78AF /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0189952B1E614E8200DE78AF /* FeedViewController.swift */; };
-		019EDD941E61551C001C382F /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019EDD931E61551C001C382F /* FeedViewModel.swift */; };
+		010A80C91E615E0300290899 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010A80C81E615E0300290899 /* SearchViewController.swift */; };
+		010A80CB1E615E3000290899 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010A80CA1E615E3000290899 /* SearchViewModel.swift */; };
+		010A80D01E616C5300290899 /* SearchListenerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 010A80CF1E616C5300290899 /* SearchListenerCollectionViewCell.xib */; };
+		010A80D21E616C8A00290899 /* SearchListenerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010A80D11E616C8A00290899 /* SearchListenerCollectionViewCell.swift */; };
 		019EDD961E6155E3001C382F /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019EDD951E6155E3001C382F /* Track.swift */; };
 		01F914611E613141001BA236 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F914601E613141001BA236 /* AppDelegate.swift */; };
 		01F914661E613141001BA236 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01F914641E613141001BA236 /* Main.storyboard */; };
@@ -36,8 +38,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0189952B1E614E8200DE78AF /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
-		019EDD931E61551C001C382F /* FeedViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
+		010A80C81E615E0300290899 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		010A80CA1E615E3000290899 /* SearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		010A80CF1E616C5300290899 /* SearchListenerCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchListenerCollectionViewCell.xib; sourceTree = "<group>"; };
+		010A80D11E616C8A00290899 /* SearchListenerCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchListenerCollectionViewCell.swift; sourceTree = "<group>"; };
 		019EDD951E6155E3001C382F /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		01F9145D1E613141001BA236 /* ListenLive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ListenLive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01F914601E613141001BA236 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -121,7 +125,7 @@
 		01F914741E6131A1001BA236 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				0189952B1E614E8200DE78AF /* FeedViewController.swift */,
+				010A80C81E615E0300290899 /* SearchViewController.swift */,
 				01F914891E61331E001BA236 /* RadioViewController.swift */,
 				D33CEAA41E614D6400B8D0EE /* SignInViewController.swift */,
 			);
@@ -166,7 +170,7 @@
 		01F914791E6131A1001BA236 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				019EDD931E61551C001C382F /* FeedViewModel.swift */,
+				010A80CA1E615E3000290899 /* SearchViewModel.swift */,
 				01F9148B1E613326001BA236 /* RadioViewModel.swift */,
 				D33CEAA61E614DA200B8D0EE /* SignInViewModel.swift */,
 			);
@@ -176,6 +180,8 @@
 		01F9147A1E6131A1001BA236 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				010A80D11E616C8A00290899 /* SearchListenerCollectionViewCell.swift */,
+				010A80CF1E616C5300290899 /* SearchListenerCollectionViewCell.xib */,
 				01F9147F1E613223001BA236 /* RadioNavigationTableViewCell.swift */,
 				01F9147D1E61320F001BA236 /* RadioNavigationTableViewCell.xib */,
 				01F914871E6132EA001BA236 /* RadioControlsTableViewCell.swift */,
@@ -283,6 +289,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				010A80D01E616C5300290899 /* SearchListenerCollectionViewCell.xib in Resources */,
 				01F914821E613280001BA236 /* RadioTrackTableViewCell.xib in Resources */,
 				01F9146B1E613141001BA236 /* LaunchScreen.storyboard in Resources */,
 				01F914681E613141001BA236 /* Assets.xcassets in Resources */,
@@ -351,13 +358,14 @@
 				D33CEAA91E61517900B8D0EE /* YouTubeRouter.swift in Sources */,
 				D33CEAAD1E61571800B8D0EE /* String+ToInt.swift in Sources */,
 				01F9148C1E613326001BA236 /* RadioViewModel.swift in Sources */,
-				0189952C1E614E8200DE78AF /* FeedViewController.swift in Sources */,
-				019EDD941E61551C001C382F /* FeedViewModel.swift in Sources */,
+				010A80C91E615E0300290899 /* SearchViewController.swift in Sources */,
+				010A80CB1E615E3000290899 /* SearchViewModel.swift in Sources */,
 				01F914611E613141001BA236 /* AppDelegate.swift in Sources */,
 				01F9148A1E61331E001BA236 /* RadioViewController.swift in Sources */,
 				01F9148E1E613494001BA236 /* UIView+AutoLayout.swift in Sources */,
 				D33CEAA71E614DA200B8D0EE /* SignInViewModel.swift in Sources */,
 				01F914841E613290001BA236 /* RadioTrackTableViewCell.swift in Sources */,
+				010A80D21E616C8A00290899 /* SearchListenerCollectionViewCell.swift in Sources */,
 				D33CEAA51E614D6400B8D0EE /* SignInViewController.swift in Sources */,
 				D33CEAAF1E61578100B8D0EE /* Double+Format.swift in Sources */,
 				01F914901E6134B1001BA236 /* UIResponder+Utilities.swift in Sources */,
