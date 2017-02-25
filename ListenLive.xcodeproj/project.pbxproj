@@ -10,6 +10,8 @@
 		0189952C1E614E8200DE78AF /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0189952B1E614E8200DE78AF /* FeedViewController.swift */; };
 		019EDD941E61551C001C382F /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019EDD931E61551C001C382F /* FeedViewModel.swift */; };
 		019EDD961E6155E3001C382F /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019EDD951E6155E3001C382F /* Track.swift */; };
+		019EDD981E6157C1001C382F /* FeedNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 019EDD971E6157C1001C382F /* FeedNavigationBar.xib */; };
+		019EDD9A1E6157CD001C382F /* FeedNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019EDD991E6157CD001C382F /* FeedNavigationBar.swift */; };
 		01F914611E613141001BA236 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F914601E613141001BA236 /* AppDelegate.swift */; };
 		01F914661E613141001BA236 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01F914641E613141001BA236 /* Main.storyboard */; };
 		01F914681E613141001BA236 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01F914671E613141001BA236 /* Assets.xcassets */; };
@@ -34,6 +36,8 @@
 		0189952B1E614E8200DE78AF /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		019EDD931E61551C001C382F /* FeedViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		019EDD951E6155E3001C382F /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
+		019EDD971E6157C1001C382F /* FeedNavigationBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedNavigationBar.xib; sourceTree = "<group>"; };
+		019EDD991E6157CD001C382F /* FeedNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedNavigationBar.swift; sourceTree = "<group>"; };
 		01F9145D1E613141001BA236 /* ListenLive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ListenLive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01F914601E613141001BA236 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		01F914651E613141001BA236 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -164,6 +168,8 @@
 		01F9147A1E6131A1001BA236 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				019EDD991E6157CD001C382F /* FeedNavigationBar.swift */,
+				019EDD971E6157C1001C382F /* FeedNavigationBar.xib */,
 				01F9147F1E613223001BA236 /* RadioNavigationTableViewCell.swift */,
 				01F9147D1E61320F001BA236 /* RadioNavigationTableViewCell.xib */,
 				01F914871E6132EA001BA236 /* RadioControlsTableViewCell.swift */,
@@ -275,6 +281,7 @@
 				01F9147E1E61320F001BA236 /* RadioNavigationTableViewCell.xib in Resources */,
 				01F914661E613141001BA236 /* Main.storyboard in Resources */,
 				01F914861E6132D8001BA236 /* RadioControlsTableViewCell.xib in Resources */,
+				019EDD981E6157C1001C382F /* FeedNavigationBar.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,6 +353,7 @@
 				019EDD961E6155E3001C382F /* Track.swift in Sources */,
 				01F914881E6132EA001BA236 /* RadioControlsTableViewCell.swift in Sources */,
 				01F914801E613223001BA236 /* RadioNavigationTableViewCell.swift in Sources */,
+				019EDD9A1E6157CD001C382F /* FeedNavigationBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
