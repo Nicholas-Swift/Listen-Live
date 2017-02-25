@@ -13,7 +13,7 @@ class ContainerViewController: UIViewController {
     // MARK: - Instance Vars
     var radioTopConstraint: NSLayoutConstraint!
     let radioNotShown: CGFloat = 0
-    let radioPartiallyShown: CGFloat = -44
+    let radioPartiallyShown: CGFloat = -80
     var radioFullyShown: CGFloat!
     
     // MARK: - Subviews
@@ -65,7 +65,7 @@ extension ContainerViewController {
         NSLayoutConstraint.activate([searchTop, searchBottom, searchLeft, searchRight])
         
         // Radio View Controller
-        radioTopConstraint = NSLayoutConstraint(item: radioViewController.view, attribute: .top, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0)
+        radioTopConstraint = NSLayoutConstraint(item: radioViewController.view, attribute: .top, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: radioPartiallyShown)
         let radioLeft = NSLayoutConstraint(item: radioViewController.view, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0)
         let radioRight = NSLayoutConstraint(item: radioViewController.view, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0)
         let radioHeight = NSLayoutConstraint(item: radioViewController.view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: view.bounds.height)
