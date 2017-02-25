@@ -1,5 +1,5 @@
 //
-//  RadioViewController.swift
+//  FeedViewController.swift
 //  ListenLive
 //
 //  Created by Nicholas Swift on 2/24/17.
@@ -8,14 +8,14 @@
 
 import UIKit
 
-class RadioViewController: UIViewController {
+class FeedViewController: UIViewController {
     
     // MARK: - Instance Vars
-    let viewModel = RadioViewModel()
+    let viewModel = FeedViewModel()
     
     // MARK: - Subviews
     lazy var tableView: UITableView = {
-        let view = UITableView.newAutoLayoutView()
+        let view = UITableView(frame: CGRect.zero, style: .grouped)
         return view
     }()
     
@@ -30,7 +30,7 @@ class RadioViewController: UIViewController {
 }
 
 // MARK: - Table View
-extension RadioViewController {
+extension FeedViewController {
     
     func setupTableView() {
         
@@ -39,7 +39,7 @@ extension RadioViewController {
         tableView.dataSource = self
         
         // Cell size
-        tableView.estimatedRowHeight = 100
+        tableView.estimatedRowHeight = 400
         tableView.rowHeight = UITableViewAutomaticDimension
         
         // Register cells
@@ -49,8 +49,6 @@ extension RadioViewController {
         
         // Style
         tableView.separatorColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.05)
-        tableView.allowsSelection = false
-        tableView.showsVerticalScrollIndicator = false
         
         // Add subview
         view.addSubview(tableView)
@@ -59,29 +57,24 @@ extension RadioViewController {
 }
 
 // MARK: - Table View Delegate
-extension RadioViewController: UITableViewDelegate {
+extension FeedViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch(indexPath.row) {
-            
-        // Radio Navigation Table View Cell
-        case 0:
-            return viewModel.heightForRadioNavigationTableViewCell()
-            
-        // Radio Controls Table View Cell
-        case 1:
-            return viewModel.heightForRadioControlsTableViewCell()
-            
-        // Track Table View Cell
-        default:
-            return viewModel.heightForRadioTrackTableViewCell()
-        }
+        return UITableViewAutomaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 5
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 5
     }
     
 }
 
 // MARK: - Table View Datasource
-extension RadioViewController: UITableViewDataSource {
+extension FeedViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.numberOfSections()
@@ -92,32 +85,13 @@ extension RadioViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch(indexPath.row) {
-            
-        // Radio Navigation Table View Cell
-        case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "RadioNavigationTableViewCell", for: indexPath)
-            viewModel.setupRadioNavigationTableViewCell(cell: cell)
-            return cell
-            
-        // Radio Controls Table View Cell
-        case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "RadioControlsTableViewCell", for: indexPath)
-            viewModel.setupRadioControlsTableViewCell(cell: cell)
-            return cell
-            
-        // Track Table View Cell
-        default:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "RadioTrackTableViewCell", for: indexPath)
-            viewModel.setupRadioTrackTableViewCell(cell: cell, indexPath: indexPath)
-            return cell
-        }
+        return UITableViewCell()
     }
     
 }
 
 // MARK: - Auto Layout
-extension RadioViewController {
+extension FeedViewController {
     
     func setupConstraints() {
         
@@ -131,5 +105,3 @@ extension RadioViewController {
     }
     
 }
-
-
