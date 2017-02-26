@@ -25,7 +25,7 @@ class ContainerViewController: UIViewController {
     var tableViewOffset: CGFloat = 0
     
     // MARK: - Subviews
-    let searchViewController = SearchViewController()
+    let searchViewController = SearchViewController.instanceFromNib()
     let radioViewController = RadioViewController()
     
     // MARK: - View Lifecycle
@@ -33,7 +33,7 @@ class ContainerViewController: UIViewController {
         super.viewDidLoad()
         
         // Setup different possible states
-        radioShownDict = [.notShown: 0, .partiallyShown: -80, .fullyShown: -view.bounds.height - 80]
+        radioShownDict = [.notShown: 0, .partiallyShown: -70, .fullyShown: -view.bounds.height - 70]
         
         // Setup Subviews
         setupPanGestureRecognizer()
@@ -41,8 +41,6 @@ class ContainerViewController: UIViewController {
         setupRadioViewController()
         setupConstraints()
     }
-    
-    
     
 }
 
@@ -189,10 +187,10 @@ extension ContainerViewController {
         NSLayoutConstraint.activate([searchTop, searchBottom, searchLeft, searchRight])
         
         // Radio View Controller
-        radioTopConstraint = NSLayoutConstraint(item: radioViewController.view, attribute: .top, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: -80)
+        radioTopConstraint = NSLayoutConstraint(item: radioViewController.view, attribute: .top, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: -70)
         let radioLeft = NSLayoutConstraint(item: radioViewController.view, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0)
         let radioRight = NSLayoutConstraint(item: radioViewController.view, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0)
-        let radioHeight = NSLayoutConstraint(item: radioViewController.view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: view.bounds.height + 80)
+        let radioHeight = NSLayoutConstraint(item: radioViewController.view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: view.bounds.height + 70)
         NSLayoutConstraint.activate([radioTopConstraint, radioLeft, radioRight, radioHeight])
     }
     

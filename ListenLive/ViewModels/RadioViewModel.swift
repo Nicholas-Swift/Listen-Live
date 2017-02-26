@@ -20,7 +20,7 @@ extension RadioViewModel {
         case 1:
             return UITableViewAutomaticDimension
         default:
-            return 80
+            return 70
         }
     }
     

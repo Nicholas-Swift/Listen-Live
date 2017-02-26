@@ -19,15 +19,23 @@ class Track {
     
     // MARK: - Init
     init?(json: JSON) {
+        
+        var songId = json[YoutTubeConstants.id].string // Popular
+        if songId == nil {
+            songId = json[YoutTubeConstants.id][YoutTubeConstants.videoID].string // Search
+        }
+        if songId == nil {
+            return nil
+        }
+        
         guard
             let title = json[YoutTubeConstants.snippet][YoutTubeConstants.title].string,
-            let songId = json[YoutTubeConstants.id].string,
             let thumbnailURLString = json[YoutTubeConstants.snippet][YoutTubeConstants.thumbnails][YoutTubeConstants.medium][YoutTubeConstants.url].string,
             let thumbnailURL = URL(string: thumbnailURLString)
         else { return nil }
         
         self.title = title
-        self.songId = songId
+        self.songId = songId!
         self.thumbnailURL = thumbnailURL
     }
     

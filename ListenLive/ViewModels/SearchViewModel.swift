@@ -10,14 +10,17 @@ import UIKit
 
 class SearchViewModel {
 
-    // Tracks
+    var isSearching = false
+    
+    // Normal View
+    let sections = ["Live Now", "Recent", "Popular", "Saved"]
+    var liveRadios: [Track] = []
     var recentTracks: [Track] = []
     var popularTracks: [Track] = []
     var savedTracks: [Track] = []
     
-    // Table View
-    let sections = ["Recent", "Popular", "Saved"]
-    
+    // Searching
+    var searchedTracks: [Track] = []
 }
 
 // MARK: - Tracks
@@ -74,25 +77,44 @@ extension SearchViewModel {
         }
     }
     
+    // Get searched tracks
+    func getSearchedTracks(searchTerm: String, completion: @escaping (() -> ())) {
+        
+        YouTubeService.search(term: searchTerm) { [weak self] (tracks: [Track], error: Error?) in
+            
+            // Error
+            if let error = error {
+                print("An error occured when trying to get saved tracks: \(error)")
+                completion()
+                return
+            }
+            
+            // Set tracks
+            self?.searchedTracks = tracks
+            completion()
+        }
+        
+    }
+    
 }
 
 // MARK: - Table View Delegate
 extension SearchViewModel {
     
     func heightForHeaderIn(section: Int) -> CGFloat {
-        return 60
+        return isSearching == true ? CGFloat.leastNonzeroMagnitude : 60
     }
     
     func heightForFooterIn(section: Int) -> CGFloat {
-        return section == sections.count - 1 ? 20 : CGFloat.leastNonzeroMagnitude
+        return section == sections.count - 1 ? 90 : CGFloat.leastNonzeroMagnitude
     }
     
-    func titleForHeaderIn(section: Int) -> String {
-        return sections[section]
+    func titleForHeaderIn(section: Int) -> String? {
+        return isSearching == true ? nil : sections[section]
     }
     
     func heightForRowAt(indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 70
     }
     
 }
@@ -101,14 +123,22 @@ extension SearchViewModel {
 extension SearchViewModel {
     
     func numberOfSections() -> Int {
-        return sections.count
+        return isSearching == true ? 1 : sections.count
     }
     
     func numberOfRowsIn(section: Int) -> Int {
+        
+        // Is searching
+        if isSearching == true {
+            return searchedTracks.count
+        }
+        
         switch section {
         case 0:
-            return recentTracks.count
+            return liveRadios.count
         case 1:
+            return recentTracks.count
+        case 2:
             return popularTracks.count
         default:
             return savedTracks.count
@@ -118,14 +148,25 @@ extension SearchViewModel {
     func setupRadioTrackTableViewCell(cell: RadioTrackTableViewCell, at indexPath: IndexPath) {
         
         // Get correct track
-        let track: Track!
-        switch indexPath.section {
-        case 0:
-            track = recentTracks[indexPath.row]
-        case 1:
-            track = popularTracks[indexPath.row]
-        default:
-            track = savedTracks[indexPath.row]
+        var track: Track!
+        
+        // Is searching
+        if isSearching == true {
+            track = searchedTracks[indexPath.row]
+        }
+        
+        // Not searching
+        else {
+            switch indexPath.section {
+            case 0:
+                track = liveRadios[indexPath.row]
+            case 1:
+                track = recentTracks[indexPath.row]
+            case 2:
+                track = popularTracks[indexPath.row]
+            default:
+                track = savedTracks[indexPath.row]
+            }
         }
         
         // Setup cell with that track information

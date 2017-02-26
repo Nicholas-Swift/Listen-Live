@@ -15,18 +15,11 @@ class SearchViewController: UIViewController {
     let viewModel = SearchViewModel()
     
     // MARK: - Subviews
-    lazy var navItem = UINavigationItem()
+    @IBOutlet weak var navBar: UINavigationBar!
+    @IBOutlet weak var navItem: UINavigationItem!
     var searchController: UISearchController!
     lazy var tableView: UITableView = {
         let view = UITableView(frame: CGRect.zero, style: .grouped)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 0
-        layout.scrollDirection = .horizontal
-        let view = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -42,86 +35,61 @@ class SearchViewController: UIViewController {
         
         // Set up other subviews
         setupSearchController()
-        setupCollectionView()
         setupTableView()
         setupConstraints()
     }
 }
 
 // MARK: - Search Controller
-extension SearchViewController: UISearchControllerDelegate, UISearchResultsUpdating, UISearchBarDelegate {
+extension SearchViewController: UISearchResultsUpdating {
     
     func setupSearchController() {
+        searchController = UISearchController(searchResultsController:  nil)
         
-        // Logic
-        searchController = UISearchController(searchResultsController: nil)
-//        searchController.searchResultsUpdater = self
-//        searchController.delegate = self
-//        searchController.searchBar.delegate = self
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.dimsBackgroundDuringPresentation = false
         
-        // Style
-        let tempColor = UIColor(red: 10/255, green: 240/255, blue: 240/255, alpha: 1)
-        view.backgroundColor = tempColor
-        searchController.searchBar.backgroundImage = UIImage.withColor(color: tempColor)
-//        searchController.hidesNavigationBarDuringPresentation = false
-//        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchResultsUpdater = self
         
-        // Add subview
+        // Change nav bar background
+        navBar.isTranslucent = false
+        navBar.setBackgroundImage(UIImage.withColor(color: UIColor.white), for: .default)
+        
+        // Change searchBar background color
+        for view in self.searchController.searchBar.subviews {
+            for subview in view.subviews {
+                if subview.isKind(of: UITextField.self) {
+                    let textField: UITextField = subview as! UITextField
+                    textField.backgroundColor = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
+                }
+            }
+        }
+        
         navItem.titleView = searchController.searchBar
-        navItem.titleView?.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(navItem.titleView!)
-        
-        definesPresentationContext = false
+        definesPresentationContext = true
     }
     
     func updateSearchResults(for searchController: UISearchController) {
-        print("yo")
-    }
-    
-}
-
-// MARK: - Collection View
-extension SearchViewController {
-    
-    func setupCollectionView() {
         
-        // Delegate and data source
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        // Get the search term
+        guard let searchTerm = searchController.searchBar.text else {
+            return
+        }
         
-        // Register cells
-        collectionView.register(SearchListenerCollectionViewCell.nib(), forCellWithReuseIdentifier: "SearchListenerCollectionViewCell")
+        // If search is nothing, show normal search
+        if searchTerm == "" {
+            viewModel.isSearching = false
+            viewModel.searchedTracks = []
+            tableView.reloadData()
+            return
+        }
         
-        // Style
-        collectionView.backgroundColor = UIColor.clear
-        collectionView.alwaysBounceVertical = false
-        collectionView.showsHorizontalScrollIndicator = false
+        viewModel.isSearching = true
         
-        // Add subview
-        view.addSubview(collectionView)
-    }
-    
-}
-
-// MARK: - Collection View Delegate
-extension SearchViewController: UICollectionViewDelegate {
-    
-}
-
-// MARK: - Collection View Data Source
-extension SearchViewController: UICollectionViewDataSource {
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SearchListenerCollectionViewCell", for: indexPath) as! SearchListenerCollectionViewCell
-        return cell
+        // Get searched tracks
+        viewModel.getSearchedTracks(searchTerm: searchTerm) { [weak self] in
+            self?.tableView.reloadData()
+        }
     }
     
 }
@@ -184,9 +152,15 @@ extension SearchViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        // Track table view cells
         let cell = tableView.dequeueReusableCell(withIdentifier: "RadioTrackTableViewCell") as! RadioTrackTableViewCell
         viewModel.setupRadioTrackTableViewCell(cell: cell, at: indexPath)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
 }
@@ -196,22 +170,8 @@ extension SearchViewController {
     
     func setupConstraints() {
         
-        // Navigation Bar
-        let navigationTop = NSLayoutConstraint(item: navItem.titleView!, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 20)
-        let navigationLeft = NSLayoutConstraint(item: navItem.titleView!, attribute: .left, relatedBy: .equal, toItem: view, attribute: .left, multiplier: 1, constant: 0)
-        let navigationRight = NSLayoutConstraint(item: navItem.titleView!, attribute: .right, relatedBy: .equal, toItem: view, attribute: .right, multiplier: 1, constant: 0)
-        let navigationHeight = NSLayoutConstraint(item: navItem.titleView!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 44)
-        NSLayoutConstraint.activate([navigationTop, navigationLeft, navigationRight, navigationHeight])
-        
-        // Collection View
-        let collectionViewTop = NSLayoutConstraint(item: collectionView, attribute: .top, relatedBy: .equal, toItem: navItem.titleView, attribute: .bottom, multiplier: 1, constant: 0)
-        let collectionViewLeft = NSLayoutConstraint(item: collectionView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0)
-        let collectionViewRight = NSLayoutConstraint(item: collectionView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0)
-        let collectionViewHeight = NSLayoutConstraint(item: collectionView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 88)
-        NSLayoutConstraint.activate([collectionViewTop, collectionViewLeft, collectionViewRight, collectionViewHeight])
-        
         // Table View
-        let tableViewTop = NSLayoutConstraint(item: tableView, attribute: .top, relatedBy: .equal, toItem: collectionView, attribute: .bottom, multiplier: 1, constant: 0)
+        let tableViewTop = NSLayoutConstraint(item: tableView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 64)
         let tableViewBottom = NSLayoutConstraint(item: tableView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0)
         let tableViewLeft = NSLayoutConstraint(item: tableView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0)
         let tableViewRight = NSLayoutConstraint(item: tableView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0)

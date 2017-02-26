@@ -24,13 +24,18 @@ class RadioTrackTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        thumbnailImageView.layer.cornerRadius = 3
+        thumbnailImageView.clipsToBounds = true
+    }
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         
         request?.cancel()
         thumbnailImageView.image = nil
-        trackTitleLabel.text = "Loading..."
-        trackPostedByLabel.text = ""
     }
     
 }

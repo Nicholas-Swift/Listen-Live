@@ -158,7 +158,7 @@ extension RadioViewController {
         let smallTop = NSLayoutConstraint(item: smallPlayer, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0)
         let smallLeft = NSLayoutConstraint(item: smallPlayer, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0)
         let smallRight = NSLayoutConstraint(item: smallPlayer, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0)
-        let smallHeight = NSLayoutConstraint(item: smallPlayer, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 80)
+        let smallHeight = NSLayoutConstraint(item: smallPlayer, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 70)
         NSLayoutConstraint.activate([smallTop, smallLeft, smallRight, smallHeight])
         
         // Table View
