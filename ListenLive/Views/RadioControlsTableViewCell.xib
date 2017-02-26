@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -17,30 +17,23 @@
             <rect key="frame" x="0.0" y="0.0" width="411" height="439"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="H8m-ee-2ZW" id="EUQ-JN-lRI">
-                <rect key="frame" x="0.0" y="0.0" width="411" height="438"/>
+                <rect key="frame" x="0.0" y="0.0" width="411" height="438.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dO7-Rb-Qqs">
-                        <rect key="frame" x="16" y="24" width="379" height="213"/>
-                        <color key="backgroundColor" red="0.91764705882352937" green="0.91764705882352937" blue="0.91764705882352937" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="width" secondItem="dO7-Rb-Qqs" secondAttribute="height" multiplier="16:9" id="FNA-qE-B79"/>
-                        </constraints>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="วันไร้สมอง - MONOMANIA feat.Art Philosopher Brothers" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W0k-C3-nwa">
-                        <rect key="frame" x="24" y="253" width="363" height="19.5"/>
+                        <rect key="frame" x="24" y="268" width="363" height="19.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MONOMANIA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c06-ff-iDk">
-                        <rect key="frame" x="24" y="276" width="363" height="17"/>
+                        <rect key="frame" x="24" y="291" width="363" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="f2f-1G-I2O">
-                        <rect key="frame" x="14" y="309.5" width="383" height="46"/>
+                        <rect key="frame" x="14" y="324.5" width="383" height="31"/>
                     </slider>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I1h-e1-Wz3">
                         <rect key="frame" x="91" y="370.5" width="44" height="44"/>
@@ -66,20 +59,27 @@
                         </constraints>
                         <state key="normal" title="Next"/>
                     </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VJF-FF-YdS">
+                        <rect key="frame" x="16" y="24" width="379" height="213"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="VJF-FF-YdS" secondAttribute="height" multiplier="16:9" id="w4N-zB-5yZ"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="c06-ff-iDk" firstAttribute="leading" secondItem="EUQ-JN-lRI" secondAttribute="leadingMargin" constant="16" id="0pz-e2-gnk"/>
                     <constraint firstItem="iXg-Ia-NKS" firstAttribute="centerY" secondItem="got-Z5-eUB" secondAttribute="centerY" id="0sv-To-L8o"/>
-                    <constraint firstItem="W0k-C3-nwa" firstAttribute="top" secondItem="dO7-Rb-Qqs" secondAttribute="bottom" constant="16" id="F2X-SV-upe"/>
-                    <constraint firstItem="dO7-Rb-Qqs" firstAttribute="leading" secondItem="EUQ-JN-lRI" secondAttribute="leadingMargin" constant="8" id="GEq-Gp-j8W"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="dO7-Rb-Qqs" secondAttribute="trailing" constant="8" id="Lke-fC-1MH"/>
+                    <constraint firstItem="W0k-C3-nwa" firstAttribute="top" secondItem="VJF-FF-YdS" secondAttribute="bottom" constant="31" id="Cmc-Ta-3cT"/>
                     <constraint firstAttribute="trailingMargin" secondItem="c06-ff-iDk" secondAttribute="trailing" constant="16" id="Md1-C0-Fcx"/>
                     <constraint firstItem="f2f-1G-I2O" firstAttribute="top" secondItem="c06-ff-iDk" secondAttribute="bottom" constant="16" id="NfN-eg-LIS"/>
                     <constraint firstItem="got-Z5-eUB" firstAttribute="top" secondItem="f2f-1G-I2O" secondAttribute="bottom" constant="16" id="SzW-Jt-p7V"/>
                     <constraint firstItem="c06-ff-iDk" firstAttribute="top" secondItem="W0k-C3-nwa" secondAttribute="bottom" constant="4" id="U3x-l6-28Y"/>
                     <constraint firstAttribute="trailingMargin" secondItem="f2f-1G-I2O" secondAttribute="trailing" constant="8" id="VdA-dq-bdL"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="VJF-FF-YdS" secondAttribute="trailing" constant="8" id="W2u-1K-WLe"/>
+                    <constraint firstItem="VJF-FF-YdS" firstAttribute="top" secondItem="EUQ-JN-lRI" secondAttribute="topMargin" constant="16" id="cbZ-a5-ay8"/>
                     <constraint firstItem="iXg-Ia-NKS" firstAttribute="leading" secondItem="got-Z5-eUB" secondAttribute="trailing" constant="48" id="de4-hJ-mn4"/>
-                    <constraint firstItem="dO7-Rb-Qqs" firstAttribute="top" secondItem="EUQ-JN-lRI" secondAttribute="topMargin" constant="16" id="g5M-a8-HKP"/>
+                    <constraint firstItem="VJF-FF-YdS" firstAttribute="leading" secondItem="EUQ-JN-lRI" secondAttribute="leadingMargin" constant="8" id="ib6-Hh-th7"/>
                     <constraint firstAttribute="bottomMargin" secondItem="got-Z5-eUB" secondAttribute="bottom" constant="16" id="jmj-ws-fjf"/>
                     <constraint firstItem="W0k-C3-nwa" firstAttribute="leading" secondItem="EUQ-JN-lRI" secondAttribute="leadingMargin" constant="16" id="lrH-lp-bZM"/>
                     <constraint firstItem="got-Z5-eUB" firstAttribute="centerX" secondItem="EUQ-JN-lRI" secondAttribute="centerX" id="mLu-6U-bWe"/>
@@ -90,6 +90,9 @@
                 </constraints>
             </tableViewCellContentView>
             <inset key="separatorInset" minX="100000" minY="0.0" maxX="0.0" maxY="0.0"/>
+            <connections>
+                <outlet property="videoViewContainer" destination="VJF-FF-YdS" id="8pE-qQ-6Xa"/>
+            </connections>
             <point key="canvasLocation" x="43.5" y="142.5"/>
         </tableViewCell>
     </objects>

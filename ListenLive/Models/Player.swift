@@ -32,11 +32,25 @@ class Player: AVPlayer {
                 return
             }
             
-            guard let url = video?.streamURLs[XCDYouTubeVideoQuality.HD720] else {
+            guard let urls = video?.streamURLs, urls.count > 0 else {
                 return
             }
+        
+            var qualityDict: [UInt: URL] = [:]
+            let keys: [UInt] = urls.keys.map{$0 as! UInt}
+            let values: [URL] = urls.values.map{$0}
+            for i in 0..<keys.count {
+                qualityDict[keys[i]] = values[i]
+            }
+            
+            guard let url =
+                qualityDict[XCDYouTubeVideoQuality.HD720.rawValue] ??
+                qualityDict[XCDYouTubeVideoQuality.medium360.rawValue] ??
+                qualityDict[XCDYouTubeVideoQuality.small240.rawValue]
+            else { return }
             
             self.replaceCurrentItem(with: AVPlayerItem(url: url))
+            self.play()
         }
     }
     

@@ -21,6 +21,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         FIRApp.configure()
         
+//        if let window = window {
+//            let radioViewController = RadioViewController()
+//            window.rootViewController = radioViewController
+//            window.makeKeyAndVisible()
+//        }
+        
+        
         return true
     }
 
