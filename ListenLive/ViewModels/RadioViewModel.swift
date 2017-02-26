@@ -16,7 +16,7 @@ extension RadioViewModel {
     func heightForRowAt(indexPath: IndexPath) -> CGFloat {
         switch(indexPath.row) {
         case 0:
-            return 44
+            return 64
         case 1:
             return UITableViewAutomaticDimension
         default:

@@ -14,6 +14,8 @@
 		0121B3A11E623BED00D28DB4 /* UIImage+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0121B3A01E623BED00D28DB4 /* UIImage+Color.swift */; };
 		018A9B601E6225100023409B /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018A9B5F1E6225100023409B /* ContainerViewController.swift */; };
 		019EDD961E6155E3001C382F /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019EDD951E6155E3001C382F /* Track.swift */; };
+		01B0B2971E62B0F500A0DE7F /* SmallPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01B0B2961E62B0F500A0DE7F /* SmallPlayerView.xib */; };
+		01B0B2991E62B22E00A0DE7F /* SmallPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B0B2981E62B22E00A0DE7F /* SmallPlayerView.swift */; };
 		01CF05B11E61772F0009947F /* SearchHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01CF05B01E61772F0009947F /* SearchHeaderView.xib */; };
 		01CF05B31E6177820009947F /* SearchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CF05B21E6177820009947F /* SearchHeaderView.swift */; };
 		01F914611E613141001BA236 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F914601E613141001BA236 /* AppDelegate.swift */; };
@@ -53,6 +55,8 @@
 		0121B3A01E623BED00D28DB4 /* UIImage+Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Color.swift"; sourceTree = "<group>"; };
 		018A9B5F1E6225100023409B /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		019EDD951E6155E3001C382F /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
+		01B0B2961E62B0F500A0DE7F /* SmallPlayerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SmallPlayerView.xib; sourceTree = "<group>"; };
+		01B0B2981E62B22E00A0DE7F /* SmallPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmallPlayerView.swift; sourceTree = "<group>"; };
 		01CF05B01E61772F0009947F /* SearchHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchHeaderView.xib; sourceTree = "<group>"; };
 		01CF05B21E6177820009947F /* SearchHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchHeaderView.swift; sourceTree = "<group>"; };
 		01F9145D1E613141001BA236 /* ListenLive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ListenLive.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -201,6 +205,8 @@
 		01F9147A1E6131A1001BA236 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				01B0B2981E62B22E00A0DE7F /* SmallPlayerView.swift */,
+				01B0B2961E62B0F500A0DE7F /* SmallPlayerView.xib */,
 				01CF05B21E6177820009947F /* SearchHeaderView.swift */,
 				01CF05B01E61772F0009947F /* SearchHeaderView.xib */,
 				010A80D11E616C8A00290899 /* SearchListenerCollectionViewCell.swift */,
@@ -322,6 +328,7 @@
 				01F9147E1E61320F001BA236 /* RadioNavigationTableViewCell.xib in Resources */,
 				01F914661E613141001BA236 /* Main.storyboard in Resources */,
 				01F914861E6132D8001BA236 /* RadioControlsTableViewCell.xib in Resources */,
+				01B0B2971E62B0F500A0DE7F /* SmallPlayerView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,6 +411,7 @@
 				D33CEAB71E61806600B8D0EE /* Session.swift in Sources */,
 				D33CEAB11E61591B00B8D0EE /* YouTubeService.swift in Sources */,
 				018A9B601E6225100023409B /* ContainerViewController.swift in Sources */,
+				01B0B2991E62B22E00A0DE7F /* SmallPlayerView.swift in Sources */,
 				01F914801E613223001BA236 /* RadioNavigationTableViewCell.swift in Sources */,
 				D33CEAAB1E61525200B8D0EE /* Constants.swift in Sources */,
 			);

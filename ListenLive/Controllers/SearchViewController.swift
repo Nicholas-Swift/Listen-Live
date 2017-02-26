@@ -55,21 +55,23 @@ extension SearchViewController: UISearchControllerDelegate, UISearchResultsUpdat
         
         // Logic
         searchController = UISearchController(searchResultsController: nil)
-        searchController.searchResultsUpdater = self
-        searchController.delegate = self
-        searchController.searchBar.delegate = self
+//        searchController.searchResultsUpdater = self
+//        searchController.delegate = self
+//        searchController.searchBar.delegate = self
         
         // Style
-        let tempColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1)
+        let tempColor = UIColor(red: 10/255, green: 240/255, blue: 240/255, alpha: 1)
         view.backgroundColor = tempColor
         searchController.searchBar.backgroundImage = UIImage.withColor(color: tempColor)
-        searchController.hidesNavigationBarDuringPresentation = false
-        searchController.dimsBackgroundDuringPresentation = false
+//        searchController.hidesNavigationBarDuringPresentation = false
+//        searchController.dimsBackgroundDuringPresentation = false
         
         // Add subview
         navItem.titleView = searchController.searchBar
         navItem.titleView?.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(navItem.titleView!)
+        
+        definesPresentationContext = false
     }
     
     func updateSearchResults(for searchController: UISearchController) {
@@ -139,9 +141,6 @@ extension SearchViewController {
         
         // Register cells
         tableView.register(RadioTrackTableViewCell.nib(), forCellReuseIdentifier: "RadioTrackTableViewCell")
-        
-        // Style
-//        tableView.separatorColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.05)
         
         // Add subview
         view.addSubview(tableView)
