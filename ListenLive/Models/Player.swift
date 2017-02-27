@@ -15,6 +15,7 @@ import NTPKit
 class Player: AVPlayer {
     
     static let player = Player()
+    var playerLayer: AVPlayerLayer?
     var unixTimeOffset: TimeInterval?
     var gettingTimeDifference: Bool = false
     

@@ -12,6 +12,7 @@ import AVFoundation
 protocol RadioViewControllerDelegate {
     func tableViewPulledFromTopWith(offset: CGFloat)
     func tableViewStoppedPulling()
+    func radioViewControllerShouldMinimize()
 }
 
 class RadioViewController: UIViewController {
@@ -56,12 +57,25 @@ extension RadioViewController: UIScrollViewDelegate {
         
         // Calculate y
         if scrollView.contentOffset.y < 0 {
+            
+            // Pull down
             delegate?.tableViewPulledFromTopWith(offset: scrollView.contentOffset.y)
             tableView.contentOffset = CGPoint.zero
         }
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        
+        // Velocity very fast
+        if tableView.contentOffset == CGPoint.zero {
+            let scrollVelocity = scrollView.panGestureRecognizer.velocity(in: self.view)
+            if(scrollVelocity.y) > 1000 {
+                delegate?.radioViewControllerShouldMinimize()
+                return
+            }
+        }
+        
+        // Normal pull
         if scrollView.contentOffset.y <= 0 {
             delegate?.tableViewStoppedPulling()
         }

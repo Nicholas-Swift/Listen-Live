@@ -26,19 +26,45 @@ class SearchViewModel {
 // MARK: - Tracks
 extension SearchViewModel {
     
+    // Get track based on indexPath
+    func getTrack(at indexPath: IndexPath) -> Track {
+        
+        // Is searching
+        if isSearching == true {
+            return searchedTracks[indexPath.row]
+        }
+        
+        // Not searching
+        switch(indexPath.section) {
+            //        case 0:
+        //            break
+        case 1:
+            return recentTracks[indexPath.row]
+        case 2:
+            return popularTracks[indexPath.row]
+        default:
+            return savedTracks[indexPath.row]
+        }
+        
+    }
+    
+    func saveTrack(track: Track) {
+        FirebaseService.saveTrack(track: track)
+    }
+    
+    func removeTrack(track: Track) {
+        FirebaseService.removeTrack(track: track)
+    }
+    
+}
+
+// MARK: - Loading Track
+extension SearchViewModel {
+    
     // Get recent tracks
     func getRecentTracks(completion: @escaping (() -> ())) {
         FirebaseService.getHistory { [weak self] (tracks: [Track], error: Error?) in
-            
-            // Error
-            if let error = error {
-                print("An error occured when trying to get recent tracks: \(error)")
-                completion()
-                return
-            }
-            
-            // Set tracks
-            self?.recentTracks = tracks
+            self?.handleTracksResponse(trackArray: &self!.recentTracks, tracks: tracks, error: error)
             completion()
         }
     }
@@ -46,16 +72,7 @@ extension SearchViewModel {
     // Get popular tracks
     func getPopularTracks(completion: @escaping (() -> ())) {
         YouTubeService.getPopular { [weak self] (tracks: [Track], error: Error?) in
-            
-            // Error
-            if let error = error {
-                print("An error occured when trying to get popular tracks: \(error)")
-                completion()
-                return
-            }
-            
-            // Set tracks
-            self?.popularTracks = tracks
+            self?.handleTracksResponse(trackArray: &self!.popularTracks, tracks: tracks, error: error)
             completion()
         }
     }
@@ -63,16 +80,7 @@ extension SearchViewModel {
     // Get saved tracks
     func getSavedTracks(completion: @escaping (() -> ())) {
         FirebaseService.getSavedTracks { [weak self] (tracks: [Track], error: Error?) in
-            
-            // Error
-            if let error = error {
-                print("An error occured when trying to get saved tracks: \(error)")
-                completion()
-                return
-            }
-            
-            // Set tracks
-            self?.savedTracks = tracks
+            self?.handleTracksResponse(trackArray: &self!.savedTracks, tracks: tracks, error: error)
             completion()
         }
     }
@@ -80,20 +88,37 @@ extension SearchViewModel {
     // Get searched tracks
     func getSearchedTracks(searchTerm: String, completion: @escaping (() -> ())) {
         
-        YouTubeService.search(term: searchTerm) { [weak self] (tracks: [Track], error: Error?) in
-            
-            // Error
-            if let error = error {
-                print("An error occured when trying to get saved tracks: \(error)")
-                completion()
-                return
-            }
-            
-            // Set tracks
-            self?.searchedTracks = tracks
+        YouTubeService.search(term: searchTerm, amount: 20) { [weak self] (tracks: [Track], error: Error?) in
+            self?.handleTracksResponse(trackArray: &self!.searchedTracks, tracks: tracks, error: error)
             completion()
         }
         
+    }
+    
+    // Track networking helper
+    fileprivate func handleTracksResponse(trackArray: inout [Track], tracks: [Track], error: Error?) {
+        // Error
+        if let error = error {
+            print("An error occured when trying to get saved tracks: \(error)")
+            return
+        }
+        
+        // Set tracks
+        trackArray = tracks
+    }
+    
+}
+
+// MARK: - Playing
+extension SearchViewModel {
+    
+    func playTrack(at indexPath: IndexPath) {
+        
+        // Get track id
+        let trackId: String = getTrack(at: indexPath).songId
+        
+        // Play
+        Player.player.play(trackId: trackId)
     }
     
 }
@@ -106,7 +131,8 @@ extension SearchViewModel {
     }
     
     func heightForFooterIn(section: Int) -> CGFloat {
-        return section == sections.count - 1 ? 90 : CGFloat.leastNonzeroMagnitude
+        if isSearching == true { return 90 }
+        return section == sections.count - 1 ? 90 : 24
     }
     
     func titleForHeaderIn(section: Int) -> String? {
@@ -148,30 +174,11 @@ extension SearchViewModel {
     func setupRadioTrackTableViewCell(cell: RadioTrackTableViewCell, at indexPath: IndexPath) {
         
         // Get correct track
-        var track: Track!
-        
-        // Is searching
-        if isSearching == true {
-            track = searchedTracks[indexPath.row]
-        }
-        
-        // Not searching
-        else {
-            switch indexPath.section {
-            case 0:
-                track = liveRadios[indexPath.row]
-            case 1:
-                track = recentTracks[indexPath.row]
-            case 2:
-                track = popularTracks[indexPath.row]
-            default:
-                track = savedTracks[indexPath.row]
-            }
-        }
+        let track: Track = getTrack(at: indexPath)
         
         // Setup cell with that track information
         cell.trackTitleLabel.text = track.title
-        cell.trackPostedByLabel.text = track.songId
+        cell.trackSubtitleLabel.text = track.songId
         cell.request = YouTubeService.downloadImage(url: track.thumbnailURL, completionHandler: { (image, error) in
             if let error = error {
                 print(error)

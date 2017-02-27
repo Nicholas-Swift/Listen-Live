@@ -41,7 +41,7 @@ class SearchViewController: UIViewController {
 }
 
 // MARK: - Search Controller
-extension SearchViewController: UISearchResultsUpdating {
+extension SearchViewController: UISearchControllerDelegate, UISearchResultsUpdating {
     
     func setupSearchController() {
         searchController = UISearchController(searchResultsController:  nil)
@@ -49,6 +49,7 @@ extension SearchViewController: UISearchResultsUpdating {
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.dimsBackgroundDuringPresentation = false
         
+        searchController.delegate = self
         searchController.searchResultsUpdater = self
         
         // Change nav bar background
@@ -69,22 +70,42 @@ extension SearchViewController: UISearchResultsUpdating {
         definesPresentationContext = true
     }
     
+    func willPresentSearchController(_ searchController: UISearchController) {
+        tableView.setContentOffset(CGPoint.zero, animated: false)
+    }
+    
+    func didPresentSearchController(_ searchController: UISearchController) {
+        viewModel.isSearching = true
+        viewModel.searchedTracks = []
+        tableView.reloadData()
+    }
+    
+    func willDismissSearchController(_ searchController: UISearchController) {
+        tableView.setContentOffset(CGPoint.zero, animated: false)
+    }
+    
+    func didDismissSearchController(_ searchController: UISearchController) {
+        viewModel.isSearching = false
+        viewModel.searchedTracks = []
+        tableView.reloadData()
+    }
+    
     func updateSearchResults(for searchController: UISearchController) {
+        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(search), object: nil)
+        perform(#selector(search), with: nil, afterDelay: 0.2)
+    }
+    
+    func search() {
         
         // Get the search term
         guard let searchTerm = searchController.searchBar.text else {
             return
         }
         
-        // If search is nothing, show normal search
+        // Return if nothing
         if searchTerm == "" {
-            viewModel.isSearching = false
-            viewModel.searchedTracks = []
-            tableView.reloadData()
             return
         }
-        
-        viewModel.isSearching = true
         
         // Get searched tracks
         viewModel.getSearchedTracks(searchTerm: searchTerm) { [weak self] in
@@ -92,7 +113,23 @@ extension SearchViewController: UISearchResultsUpdating {
         }
     }
     
+    
 }
+
+// MARK: - Search Scrolling
+extension SearchViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if(viewModel.isSearching) {
+            searchController.searchBar.resignFirstResponder()
+            if searchController.searchBar.text == "" {
+                tableView.reloadData()
+            }
+        }
+    }
+    
+}
+
 
 // MARK: - Table View
 extension SearchViewController {
@@ -156,11 +193,53 @@ extension SearchViewController: UITableViewDataSource {
         // Track table view cells
         let cell = tableView.dequeueReusableCell(withIdentifier: "RadioTrackTableViewCell") as! RadioTrackTableViewCell
         viewModel.setupRadioTrackTableViewCell(cell: cell, at: indexPath)
+        cell.delegate = self
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        viewModel.playTrack(at: indexPath)
+    }
+    
+}
+
+// MARK: - Table View Cell Delegate
+extension SearchViewController: RadioTrackTableViewCellDelegate {
+    
+    func moreButtonPressed(sender: RadioTrackTableViewCell) {
+        
+        // Get index path
+        guard let indexPath = tableView.indexPath(for: sender) else {
+            return
+        }
+        
+        // Get track
+        let track: Track = viewModel.getTrack(at: indexPath)
+        
+        // Create alert
+        let alert = UIAlertController(title: track.title, message: nil, preferredStyle: .actionSheet)
+        
+        // Save action
+        let saveAction = UIAlertAction(title: "Save", style: .default) { (alert) in
+            self.viewModel.saveTrack(track: track)
+        }
+        alert.addAction(saveAction)
+        
+        // Remove action
+        if viewModel.sections[indexPath.section] == "Saved" {
+            let removeAction = UIAlertAction(title: "Remove", style: .destructive) { (alert) in
+                self.viewModel.removeTrack(track: track)
+            }
+            alert.addAction(removeAction)
+        }
+        
+        // Cancel action
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(cancelAction)
+        
+        // Present alert
+        present(alert, animated: true, completion: nil)
     }
     
 }

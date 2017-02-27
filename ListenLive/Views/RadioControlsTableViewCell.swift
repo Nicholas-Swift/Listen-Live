@@ -13,7 +13,6 @@ class RadioControlsTableViewCell: UITableViewCell {
     
     // MARK: - Subviews
     @IBOutlet weak var videoViewContainer: UIView!
-    var playerLayer: AVPlayerLayer?
     
     
     // MARK: - View Lifecycle
@@ -21,21 +20,26 @@ class RadioControlsTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        playerLayer?.removeFromSuperlayer()
-    }
+//    override func prepareForReuse() {
+//        super.prepareForReuse()
+//        playerLayer?.removeFromSuperlayer()
+//    }
     
     func setup() {
         setupVideoLayer()
     }
     
     func setupVideoLayer() {
-        let layer = AVPlayerLayer(player: Player.player)
-        layer.videoGravity = AVLayerVideoGravityResizeAspectFill
-        playerLayer = layer
-        self.layoutIfNeeded()
-        videoViewContainer.layer.addSublayer(layer)
+//        var playerLayer: AVPlayerLayer
+//        if let layer = Player.player.playerLayer {
+//            playerLayer = layer
+//        } else {
+//            playerLayer = AVPlayerLayer(player: Player.player)
+//            playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+//            //Player.player.playerLayer = playerLayer
+//        }
+//        self.layoutIfNeeded()
+//        videoViewContainer.layer.addSublayer(layer)
     }
     
     override func updateConstraints() {
@@ -46,7 +50,7 @@ class RadioControlsTableViewCell: UITableViewCell {
         super.layoutIfNeeded()
         
         if let videoViewContainer = videoViewContainer {
-            playerLayer?.frame = CGRect(x: 0, y: 0, width: videoViewContainer.frame.width, height: videoViewContainer.frame.height)
+            Player.player.playerLayer?.frame = CGRect(x: 0, y: 0, width: videoViewContainer.frame.width, height: videoViewContainer.frame.height)
         }
     }
 }

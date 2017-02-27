@@ -17,7 +17,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recent" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exX-LM-hns">
-                    <rect key="frame" x="16" y="23" width="81" height="29"/>
+                    <rect key="frame" x="16" y="19" width="81" height="29"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -26,7 +26,7 @@
             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="exX-LM-hns" firstAttribute="leading" secondItem="L9h-cs-KeB" secondAttribute="leadingMargin" constant="8" id="RJp-Gs-sPL"/>
-                <constraint firstAttribute="bottomMargin" secondItem="exX-LM-hns" secondAttribute="bottom" id="k41-1g-wAd"/>
+                <constraint firstAttribute="bottomMargin" secondItem="exX-LM-hns" secondAttribute="bottom" constant="4" id="k41-1g-wAd"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>

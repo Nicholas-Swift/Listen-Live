@@ -31,11 +31,21 @@
                             <navigationItem title="Title" id="MEI-1x-4tF"/>
                         </items>
                     </navigationBar>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XoJ-6E-OHQ">
+                        <rect key="frame" x="0.0" y="63.5" width="375" height="0.5"/>
+                        <color key="backgroundColor" red="0.78431372549019607" green="0.78431372549019607" blue="0.78431372549019607" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="FDR-jU-mTl"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
+                    <constraint firstItem="XoJ-6E-OHQ" firstAttribute="top" secondItem="lX9-dA-tYI" secondAttribute="bottom" constant="-0.5" id="95N-DV-6PB"/>
                     <constraint firstAttribute="trailing" secondItem="lX9-dA-tYI" secondAttribute="trailing" id="AU3-TJ-0Tg"/>
                     <constraint firstItem="lX9-dA-tYI" firstAttribute="leading" secondItem="abc-dN-cp8" secondAttribute="leading" id="Uae-bm-MAb"/>
+                    <constraint firstItem="XoJ-6E-OHQ" firstAttribute="leading" secondItem="abc-dN-cp8" secondAttribute="leading" id="fVL-Zq-g9l"/>
+                    <constraint firstAttribute="trailing" secondItem="XoJ-6E-OHQ" secondAttribute="trailing" id="fk8-Ox-TKH"/>
                     <constraint firstItem="lX9-dA-tYI" firstAttribute="top" secondItem="OfO-VB-rIt" secondAttribute="bottom" id="nLs-Ij-BJQ"/>
                 </constraints>
             </view>
