@@ -20,44 +20,56 @@
                 <rect key="frame" x="0.0" y="0.0" width="411" height="438"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="วันไร้สมอง - MONOMANIA feat.Art Philosopher Brothers" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W0k-C3-nwa">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="วันไร้สมอง - MONOMANIA feat.Art Philosopher Brothers" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W0k-C3-nwa">
                         <rect key="frame" x="24" y="268" width="363" height="19.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MONOMANIA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c06-ff-iDk">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="MONOMANIA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c06-ff-iDk">
                         <rect key="frame" x="24" y="291" width="363" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="f2f-1G-I2O">
+                    <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="f2f-1G-I2O">
                         <rect key="frame" x="14" y="324.5" width="383" height="31"/>
+                        <connections>
+                            <action selector="durationAction:" destination="H8m-ee-2ZW" eventType="valueChanged" id="OSI-1Y-LYs"/>
+                        </connections>
                     </slider>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I1h-e1-Wz3">
-                        <rect key="frame" x="91" y="370.5" width="44" height="44"/>
+                        <rect key="frame" x="91" y="371" width="44" height="44"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="44" id="P3d-G7-6EZ"/>
                             <constraint firstAttribute="height" constant="44" id="zSy-5M-ojT"/>
                         </constraints>
                         <state key="normal" image="ic_rewind"/>
+                        <connections>
+                            <action selector="rewindAction:" destination="H8m-ee-2ZW" eventType="touchUpInside" id="p5p-OW-00I"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="got-Z5-eUB">
-                        <rect key="frame" x="183" y="370.5" width="44" height="44"/>
+                        <rect key="frame" x="183" y="371" width="44" height="44"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="44" id="1Qd-eE-v8O"/>
                             <constraint firstAttribute="width" constant="44" id="qpd-NY-RGw"/>
                         </constraints>
                         <state key="normal" image="ic_play_large"/>
+                        <connections>
+                            <action selector="playAction:" destination="H8m-ee-2ZW" eventType="touchUpInside" id="vhf-JZ-v8l"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iXg-Ia-NKS">
-                        <rect key="frame" x="275" y="370.5" width="44" height="44"/>
+                        <rect key="frame" x="275" y="371" width="44" height="44"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="44" id="FNm-ni-voc"/>
                             <constraint firstAttribute="width" constant="44" id="e3n-CU-txK"/>
                         </constraints>
                         <state key="normal" title="Next" image="ic_fast_forward"/>
+                        <connections>
+                            <action selector="fastForwardAction:" destination="H8m-ee-2ZW" eventType="touchUpInside" id="AhK-XL-tp7"/>
+                        </connections>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VJF-FF-YdS">
                         <rect key="frame" x="16" y="24" width="379" height="213"/>
@@ -91,6 +103,12 @@
             </tableViewCellContentView>
             <inset key="separatorInset" minX="100000" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
+                <outlet property="durationSlider" destination="f2f-1G-I2O" id="j8L-jD-dLL"/>
+                <outlet property="fastForwardButton" destination="iXg-Ia-NKS" id="rBS-RH-AR7"/>
+                <outlet property="playButton" destination="got-Z5-eUB" id="BkP-a3-Mg7"/>
+                <outlet property="rewindButton" destination="I1h-e1-Wz3" id="xY7-Rq-dDO"/>
+                <outlet property="trackSubtitleLabel" destination="c06-ff-iDk" id="aaT-nZ-RtV"/>
+                <outlet property="trackTitleLabel" destination="W0k-C3-nwa" id="9El-bF-f92"/>
                 <outlet property="videoViewContainer" destination="VJF-FF-YdS" id="8pE-qQ-6Xa"/>
             </connections>
             <point key="canvasLocation" x="43.5" y="142.5"/>

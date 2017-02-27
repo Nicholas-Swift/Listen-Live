@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 class RadioViewModel {}
 
@@ -38,7 +40,9 @@ extension RadioViewModel {
     }
     
     func setupRadioNavigationTableViewCell(cell: UITableViewCell) {
-        // do shit
+        guard let cell = cell as? RadioNavigationTableViewCell else {
+            return
+        }
     }
     
     func setupRadioControlsTableViewCell(cell: UITableViewCell) {

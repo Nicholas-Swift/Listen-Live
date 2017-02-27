@@ -115,10 +115,10 @@ extension SearchViewModel {
     func playTrack(at indexPath: IndexPath) {
         
         // Get track id
-        let trackId: String = getTrack(at: indexPath).songId
+        let track: Track = getTrack(at: indexPath)
         
         // Play
-        Player.player.play(trackId: trackId)
+        Player.player.play(track: track)
     }
     
 }
@@ -185,7 +185,7 @@ extension SearchViewModel {
                 return
             }
             
-            UIView.transition(with: cell.thumbnailImageView, duration: 1, options: UIViewAnimationOptions.transitionCrossDissolve, animations: {
+            UIView.transition(with: cell.thumbnailImageView, duration: 0.2, options: UIViewAnimationOptions.transitionCrossDissolve, animations: {
                 cell.thumbnailImageView.image = image
             })
         })

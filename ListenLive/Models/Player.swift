@@ -14,11 +14,13 @@ import NTPKit
 
 class Player: AVPlayer {
     
+    // MARK: - Instance Vars
     static let player = Player()
     var playerLayer: AVPlayerLayer?
     var unixTimeOffset: TimeInterval?
     var gettingTimeDifference: Bool = false
     
+    // MARK: - Init
     override init() {
         super.init()
         
@@ -26,13 +28,22 @@ class Player: AVPlayer {
         try? AVAudioSession.sharedInstance().setActive(true)
     }
     
-    func play(trackId: String) {
-        XCDYouTubeClient.default().getVideoWithIdentifier(trackId) { (video, error) in
+    // MARK: - Helper Functions
+    func play(track: Track) {
+        
+        // Add to history
+        FirebaseService.addToHistory(track: track)
+        
+        // Play Video
+        XCDYouTubeClient.default().getVideoWithIdentifier(track.songId) { (video, error) in
+            
+            // Error
             if let error = error {
                 print(error)
                 return
             }
             
+            // Get correct URL
             guard let urls = video?.streamURLs, urls.count > 0 else {
                 return
             }

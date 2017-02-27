@@ -12,12 +12,14 @@ class Session {
     
     static var currentSession: Session?
     
+    // MARK: - Instance Vars
     var id: String
     var trackId: String
     var time: TimeInterval
     var timeSetAt: TimeInterval
     var state: PlayerState
     
+    // MARK: - Init
     init?(snapshot: [String: Any], id: String) {
         guard
             let trackId = snapshot[FirebaseConstants.track] as? String,

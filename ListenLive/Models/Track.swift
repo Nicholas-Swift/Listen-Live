@@ -18,6 +18,12 @@ class Track {
     var thumbnailURL: URL
     
     // MARK: - Init
+    init(songId: String, title: String, thumbnailURL: URL) {
+        self.songId = songId
+        self.title = title
+        self.thumbnailURL = thumbnailURL
+    }
+    
     init?(json: JSON) {
         
         var songId = json[YoutTubeConstants.id].string // Popular

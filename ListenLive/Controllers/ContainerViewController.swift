@@ -25,7 +25,7 @@ class ContainerViewController: UIViewController {
     var tableViewOffset: CGFloat = 0
     
     // MARK: - Subviews
-    let searchViewController = SearchViewController.instanceFromNib()
+    let searchViewController = SearchViewController.instanceFromNib() as! SearchViewController
     let radioViewController = RadioViewController()
     
     // MARK: - View Lifecycle
@@ -143,11 +143,16 @@ extension ContainerViewController {
 }
 
 // MARK: - Search View Controller
-extension ContainerViewController {
+extension ContainerViewController: SearchViewControllerDelegate {
 
     func setupSearchViewController() {
+        searchViewController.delegate = self
         searchViewController.view.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(searchViewController.view)
+    }
+    
+    func shouldShowAlertController(alert: UIAlertController) {
+        present(alert, animated: true, completion: nil)
     }
 }
 

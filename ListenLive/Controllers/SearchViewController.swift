@@ -9,10 +9,15 @@
 import UIKit
 import XCDYouTubeKit
 
+protocol SearchViewControllerDelegate {
+    func shouldShowAlertController(alert: UIAlertController)
+}
+
 class SearchViewController: UIViewController {
     
     // MARK: - Instance Vars
     let viewModel = SearchViewModel()
+    var delegate: SearchViewControllerDelegate?
     
     // MARK: - Subviews
     @IBOutlet weak var navBar: UINavigationBar!
@@ -239,7 +244,8 @@ extension SearchViewController: RadioTrackTableViewCellDelegate {
         alert.addAction(cancelAction)
         
         // Present alert
-        present(alert, animated: true, completion: nil)
+        delegate?.shouldShowAlertController(alert: alert)
+//        present(alert, animated: true, completion: nil)
     }
     
 }

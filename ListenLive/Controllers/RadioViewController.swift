@@ -26,11 +26,17 @@ class RadioViewController: UIViewController {
         let view = UITableView.newAutoLayoutView()
         return view
     }()
+    var radioControlTableViewCell: RadioControlsTableViewCell!
     lazy var smallPlayer = SmallPlayerView.instanceFromNib()
     
     // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // MARK: - Radio Controls Table View Cell - WTF?
+        radioControlTableViewCell = RadioControlsTableViewCell.instanceFromNib() as! RadioControlsTableViewCell
+        viewModel.setupRadioControlsTableViewCell(cell: radioControlTableViewCell)
+        radioControlTableViewCell.delegate = self
         
         setupSmallPlayer()
         setupTableView()
@@ -143,15 +149,17 @@ extension RadioViewController: UITableViewDataSource {
             
         // Radio Navigation Table View Cell
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "RadioNavigationTableViewCell", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "RadioNavigationTableViewCell", for: indexPath) as! RadioNavigationTableViewCell
+            cell.delegate = self
             viewModel.setupRadioNavigationTableViewCell(cell: cell)
             return cell
             
         // Radio Controls Table View Cell
         case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "RadioControlsTableViewCell", for: indexPath)
-            viewModel.setupRadioControlsTableViewCell(cell: cell)
-            return cell
+            return radioControlTableViewCell
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "RadioControlsTableViewCell", for: indexPath)
+//            viewModel.setupRadioControlsTableViewCell(cell: cell)
+//            return cell
             
         // Track Table View Cell
         default:
@@ -159,6 +167,42 @@ extension RadioViewController: UITableViewDataSource {
             viewModel.setupRadioTrackTableViewCell(cell: cell, indexPath: indexPath)
             return cell
         }
+    }
+    
+}
+
+// MARK: - Table View Cell Delegates
+extension RadioViewController: RadioNavigationTableViewCellDelegate, RadioControlsTableViewCellDelegate {
+    
+    // MARK: - Navigation
+    func downButtonPressed() {
+        delegate?.radioViewControllerShouldMinimize()
+    }
+    
+    func optionsButtonPressed() {
+        print("OPTIONS BUTTON PRESSED")
+    }
+    
+    // MARK: - Controls
+    func sliderDurationChanged(duration: Float) {
+        print("DURATION CHANGED \(duration)")
+    }
+    
+    func rewindButtonPressed() {
+        print("REWIND")
+    }
+    
+    func playButtonPressed() {
+        
+        if(Player.player.rate != 0 && Player.player.error == nil) {
+            Player.player.pause()
+        } else {
+            Player.player.play()
+        }
+    }
+    
+    func fastForwardButtonPressed() {
+        print("FAST FORWARD")
     }
     
 }

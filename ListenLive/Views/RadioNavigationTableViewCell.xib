@@ -11,11 +11,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="92" id="t6o-vV-5fC" customClass="RadioControlsTableViewCell" customModule="ListenLive" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="92" id="t6o-vV-5fC" customClass="RadioNavigationTableViewCell" customModule="ListenLive" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="92"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="t6o-vV-5fC" id="TcB-E8-RG9">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="92"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="91"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SCw-Jq-y2A">
@@ -24,6 +24,9 @@
                             <constraint firstAttribute="width" constant="66" id="4AP-0H-FNO"/>
                         </constraints>
                         <state key="normal" image="ic_nav_v"/>
+                        <connections>
+                            <action selector="downAction:" destination="t6o-vV-5fC" eventType="touchUpInside" id="uF2-xM-9oS"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nick's Radio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nUD-AR-Q8A">
                         <rect key="frame" x="139" y="35.5" width="96.5" height="21"/>
@@ -37,6 +40,9 @@
                             <constraint firstAttribute="width" constant="66" id="umr-A7-thB"/>
                         </constraints>
                         <state key="normal" image="ic_nav_x"/>
+                        <connections>
+                            <action selector="optionsAction:" destination="t6o-vV-5fC" eventType="touchUpInside" id="DHe-hA-KJa"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>
@@ -51,6 +57,11 @@
                 </constraints>
             </tableViewCellContentView>
             <inset key="separatorInset" minX="100000" minY="0.0" maxX="0.0" maxY="0.0"/>
+            <connections>
+                <outlet property="downButton" destination="SCw-Jq-y2A" id="dBE-Mr-X1r"/>
+                <outlet property="optionsButton" destination="Rf1-Wi-VNO" id="dwS-2i-9T9"/>
+                <outlet property="radioTitleLabel" destination="nUD-AR-Q8A" id="xxR-4V-k4g"/>
+            </connections>
             <point key="canvasLocation" x="-13.5" y="-17"/>
         </tableViewCell>
     </objects>

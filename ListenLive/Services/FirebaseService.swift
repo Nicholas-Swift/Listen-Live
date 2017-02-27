@@ -24,12 +24,16 @@ class FirebaseService {
         }
         
         ref.child(FirebaseConstants.tracks).child(currentUser.uid).observe(.value, with: { (snapshot) in
-            guard let tracksJSON = snapshot.value as? [[String: Any]] else {
-                completionHandler([], nil)
-                return
+            
+            var tracks: [Track] = []
+            for item in snapshot.children {
+                if let child = item as? FIRDataSnapshot, let json = child.value as? [String:Any] {
+                    if let track = Track(snapshot: json) {
+                        tracks.append(track)
+                    }
+                }
             }
             
-            let tracks = tracksJSON.flatMap(Track.init)
             completionHandler(tracks, nil)
         })
     }
@@ -58,8 +62,25 @@ class FirebaseService {
         ref.child(FirebaseConstants.history).child(currentUser.uid).child(track.songId).setValue(track.toJSON())
     }
     
-    static func getHistory(completionHandler: ([Track], Error?) -> Void) {
-    
+    static func getHistory(completionHandler: @escaping ([Track], Error?) -> Void) {
+        guard let currentUser = FIRAuth.auth()?.currentUser else {
+            completionHandler([], nil)
+            return
+        }
+        
+        ref.child(FirebaseConstants.history).child(currentUser.uid).observe(.value, with: { (snapshot) in
+            
+            var tracks: [Track] = []
+            for item in snapshot.children {
+                if let child = item as? FIRDataSnapshot, let json = child.value as? [String:Any] {
+                    if let track = Track(snapshot: json) {
+                        tracks.append(track)
+                    }
+                }
+            }
+            
+            completionHandler(tracks, nil)
+        })
     }
     
     static func createSession(trackId: String, completion: (Session) -> Void) {
