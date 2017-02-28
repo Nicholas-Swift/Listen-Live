@@ -20,11 +20,35 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="Radio">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Listen Live" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Xf-wy-Ddg">
+                                <rect key="frame" x="130" y="80" width="114" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get started and start listening and watching youtube videos with friends now." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vAx-ig-OXS">
+                                <rect key="frame" x="87" y="153" width="200" height="81.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="YbL-pf-DvP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.1333333333" green="0.1333333333" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="vAx-ig-OXS" firstAttribute="top" secondItem="8Xf-wy-Ddg" secondAttribute="bottom" constant="44" id="0nU-1Y-Xrc"/>
+                            <constraint firstItem="vAx-ig-OXS" firstAttribute="centerX" secondItem="8Xf-wy-Ddg" secondAttribute="centerX" id="ef0-MG-GIS"/>
+                            <constraint firstItem="8Xf-wy-Ddg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fP7-dk-X70"/>
+                            <constraint firstItem="8Xf-wy-Ddg" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="60" id="fqd-sw-9zJ"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="141.59999999999999" y="138.98050974512745"/>
         </scene>
         <!--ContainerViewController-->
         <scene sceneID="B5V-C3-FUC">
@@ -42,7 +66,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ey3-oW-Ite" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="898" y="38"/>
+            <point key="canvasLocation" x="1143" y="139"/>
         </scene>
     </scenes>
 </document>

@@ -13,6 +13,7 @@ protocol RadioViewControllerDelegate {
     func tableViewPulledFromTopWith(offset: CGFloat)
     func tableViewStoppedPulling()
     func radioViewControllerShouldMinimize()
+    func radioViewControllerShouldMaximize()
 }
 
 class RadioViewController: UIViewController {
@@ -20,6 +21,8 @@ class RadioViewController: UIViewController {
     // MARK: - Instance Vars
     let viewModel = RadioViewModel()
     var delegate: RadioViewControllerDelegate?
+    var isPullingDown: Bool = false
+    var inPullTransition: Bool = false
     
     // MARK: - Subviews
     lazy var tableView: UITableView = {
@@ -50,8 +53,15 @@ extension RadioViewController {
     
     func setupSmallPlayer() {
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(smallPlayerTapped))
+        smallPlayer.addGestureRecognizer(tap)
+        
         // Add Subview
         view.addSubview(smallPlayer)
+    }
+    
+    func smallPlayerTapped() {
+        delegate?.radioViewControllerShouldMaximize()
     }
     
 }
@@ -64,13 +74,34 @@ extension RadioViewController: UIScrollViewDelegate {
         // Calculate y
         if scrollView.contentOffset.y < 0 {
             
+            // Pulling down
+            isPullingDown = true
+            
             // Pull down
+            delegate?.tableViewPulledFromTopWith(offset: scrollView.contentOffset.y)
+            tableView.contentOffset = CGPoint.zero
+        }
+        
+        // Pushing back up
+        else if isPullingDown && inPullTransition {
+            
+            // Push up
             delegate?.tableViewPulledFromTopWith(offset: scrollView.contentOffset.y)
             tableView.contentOffset = CGPoint.zero
         }
     }
     
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        
+        // Start in transition
+        self.inPullTransition = true
+    }
+    
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        
+        // Stop in transition
+        self.isPullingDown = false
+        self.inPullTransition = false
         
         // Velocity very fast
         if tableView.contentOffset == CGPoint.zero {
@@ -157,9 +188,6 @@ extension RadioViewController: UITableViewDataSource {
         // Radio Controls Table View Cell
         case 1:
             return radioControlTableViewCell
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "RadioControlsTableViewCell", for: indexPath)
-//            viewModel.setupRadioControlsTableViewCell(cell: cell)
-//            return cell
             
         // Track Table View Cell
         default:

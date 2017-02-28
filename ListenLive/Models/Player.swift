@@ -34,6 +34,9 @@ class Player: AVPlayer {
         // Add to history
         FirebaseService.addToHistory(track: track)
         
+        FirebaseService.createSession(trackId: track.songId) { (_) in
+        }
+        
         // Play Video
         XCDYouTubeClient.default().getVideoWithIdentifier(track.songId) { (video, error) in
             
@@ -90,7 +93,6 @@ class Player: AVPlayer {
                     }
                 }
             }
-            
         }
     }
 }

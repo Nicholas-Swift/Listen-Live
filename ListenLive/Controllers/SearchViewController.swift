@@ -245,7 +245,6 @@ extension SearchViewController: RadioTrackTableViewCellDelegate {
         
         // Present alert
         delegate?.shouldShowAlertController(alert: alert)
-//        present(alert, animated: true, completion: nil)
     }
     
 }

@@ -34,4 +34,9 @@ class Session {
         self.timeSetAt = timeSetAt
         self.state = PlayerState(rawValue: state) ?? .playing
     }
+    
+    // MARK: - Helper Functions
+    func addSong(trackId: String) {
+        
+    }
 }

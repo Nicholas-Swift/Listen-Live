@@ -102,6 +102,9 @@ class FirebaseService {
         userSessionRef.setValue(sessionRef.key)
         
         userSessionRef.onDisconnectRemoveValue()
+        
+        Session.currentSession = Session(snapshot: sessionInfo, id: sessionRef.key)
+        completion(Session.currentSession!)
     }
     
     static func updateState(state: PlayerState, time: TimeInterval) {

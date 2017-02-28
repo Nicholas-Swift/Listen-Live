@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         // Is user already logged in?
-        if let _ = FBSDKAccessToken.current().tokenString {
+        if let current = FBSDKAccessToken.current(), let _ = current.tokenString {
             
             // Set ContainerViewController
             let initialViewController = storyboard.instantiateViewController(withIdentifier: "ContainerViewController")
@@ -64,7 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // Make sure we have access token
-        guard let accessToken = FBSDKAccessToken.current().tokenString else {
+        guard let current = FBSDKAccessToken.current(), let accessToken = current.tokenString else {
             return handled
         }
         

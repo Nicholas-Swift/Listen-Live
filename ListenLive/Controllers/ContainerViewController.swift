@@ -194,6 +194,23 @@ extension ContainerViewController: RadioViewControllerDelegate {
         })
     }
     
+    func radioViewControllerShouldMaximize() {
+        
+        // Reset offsets
+        beginOffset = 0
+        tableViewOffset = 0
+        
+        // Change constraint
+        radioTopConstraint.constant = radioShownDict[.fullyShown]!
+        radioShown = .fullyShown
+        
+        // Animate
+        UIView.animate(withDuration: 0.3, animations: {
+            self.setNeedsStatusBarAppearanceUpdate()
+            self.view.layoutIfNeeded()
+        })
+    }
+    
 }
 
 // MARK: - Auto Layout
