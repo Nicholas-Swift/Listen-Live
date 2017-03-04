@@ -179,6 +179,14 @@ extension SearchViewModel {
         // Setup cell with that track information
         cell.trackTitleLabel.text = track.title
         cell.trackSubtitleLabel.text = track.songId
+        
+        // Set up image if there
+        if let image = track.thumbnailImage {
+            cell.thumbnailImageView.image = image
+            return
+        }
+        
+        // Set up image if not there
         cell.request = YouTubeService.downloadImage(url: track.thumbnailURL, completionHandler: { (image, error) in
             if let error = error {
                 print(error)
@@ -186,6 +194,7 @@ extension SearchViewModel {
             }
             
             UIView.transition(with: cell.thumbnailImageView, duration: 0.2, options: UIViewAnimationOptions.transitionCrossDissolve, animations: {
+                track.thumbnailImage = image
                 cell.thumbnailImageView.image = image
             })
         })

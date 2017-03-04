@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol RadioNavigationTableViewCellDelegate {
+protocol RadioNavigationTableViewCellDelegate: class {
     func downButtonPressed()
     func optionsButtonPressed()
 }
@@ -16,7 +16,7 @@ protocol RadioNavigationTableViewCellDelegate {
 class RadioNavigationTableViewCell: UITableViewCell {
     
     // MARK: - Instance vars
-    var delegate: RadioNavigationTableViewCellDelegate?
+    weak var delegate: RadioNavigationTableViewCellDelegate?
     
     // MARK: - Subviews
     @IBOutlet weak var downButton: UIButton!

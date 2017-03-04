@@ -16,6 +16,7 @@ class Track {
     var songId: String
     var title: String
     var thumbnailURL: URL
+    var thumbnailImage: UIImage?
     
     // MARK: - Init
     init(songId: String, title: String, thumbnailURL: URL) {

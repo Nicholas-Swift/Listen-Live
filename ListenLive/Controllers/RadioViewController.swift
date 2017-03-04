@@ -14,6 +14,7 @@ protocol RadioViewControllerDelegate {
     func tableViewStoppedPulling()
     func radioViewControllerShouldMinimize()
     func radioViewControllerShouldMaximize()
+    func shouldShowAlertController(alert: UIAlertController)
 }
 
 class RadioViewController: UIViewController {
@@ -29,21 +30,66 @@ class RadioViewController: UIViewController {
         let view = UITableView.newAutoLayoutView()
         return view
     }()
+    var radioNavigationTableViewCell: RadioNavigationTableViewCell!
     var radioControlTableViewCell: RadioControlsTableViewCell!
-    lazy var smallPlayer = SmallPlayerView.instanceFromNib()
+    lazy var smallPlayer = SmallPlayerView.instanceFromNib() as! SmallPlayerView
     
     // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // MARK: - Radio Controls Table View Cell - WTF?
-        radioControlTableViewCell = RadioControlsTableViewCell.instanceFromNib() as! RadioControlsTableViewCell
-        viewModel.setupRadioControlsTableViewCell(cell: radioControlTableViewCell)
-        radioControlTableViewCell.delegate = self
-        
+        setupNotifications()
         setupSmallPlayer()
         setupTableView()
         setupConstraints()
+    }
+    
+}
+
+// MARK: - Notifications
+extension RadioViewController {
+    
+    func setupNotifications() {
+    
+        // Current Track Changed
+        NotificationCenter.default.addObserver(self, selector: #selector(currentTrackChangedNotification(notification:)), name: PlayerNotifications.currentTrackChanged, object: nil)
+        
+        // Current Queue Changed
+        NotificationCenter.default.addObserver(self, selector: #selector(currentQueueChangedNotification(notification:)), name: PlayerNotifications.currentQueueChanged, object: nil)
+        
+    }
+    
+    // Current Track Changed
+    func currentTrackChangedNotification(notification: Notification) {
+        
+        // Make sure it's a track
+        guard let track = notification.object as? Track else {
+            return
+        }
+        
+        // Change small player
+        smallPlayer.trackTitleLabel.text = track.title
+        smallPlayer.trackSubtitleLabel.text = track.songId
+        smallPlayer.thumbnailImageView.af_setImage(withURL: track.thumbnailURL)
+        
+        // Change control table view cell
+        radioControlTableViewCell.trackTitleLabel.text = track.title
+        radioControlTableViewCell.trackSubtitleLabel.text = track.songId
+    }
+    
+    // Current Queue Changed
+    func currentQueueChangedNotification(notification: Notification) {
+        
+        // Make sure it's a track queue
+        guard let trackQueue = notification.object as? [Track] else {
+            return
+        }
+        
+        // Set queue
+        viewModel.tracks = trackQueue
+        
+        // Reload table view
+        tableView.reloadData()
     }
     
 }
@@ -64,6 +110,12 @@ extension RadioViewController {
         delegate?.radioViewControllerShouldMaximize()
     }
     
+    func smallPlayerReset() {
+        smallPlayer.trackTitleLabel.text = "Add a song..."
+        smallPlayer.trackSubtitleLabel.text = ""
+        smallPlayer.thumbnailImageView.image = nil
+    }
+    
 }
 
 // MARK: - Scroll View
@@ -75,7 +127,9 @@ extension RadioViewController: UIScrollViewDelegate {
         if scrollView.contentOffset.y < 0 {
             
             // Pulling down
-            isPullingDown = true
+            if inPullTransition {
+                isPullingDown = true
+            }
             
             // Pull down
             delegate?.tableViewPulledFromTopWith(offset: scrollView.contentOffset.y)
@@ -151,6 +205,16 @@ extension RadioViewController {
         
         // Add subview
         view.addSubview(tableView)
+        
+        // Radio Navigation Table View Cell
+        radioNavigationTableViewCell = RadioNavigationTableViewCell.instanceFromNib() as! RadioNavigationTableViewCell
+        viewModel.setupRadioNavigationTableViewCell(cell: radioNavigationTableViewCell)
+        radioNavigationTableViewCell.delegate = self
+        
+        // Radio Controls Table View Cell
+        radioControlTableViewCell = RadioControlsTableViewCell.instanceFromNib() as! RadioControlsTableViewCell
+        viewModel.setupRadioControlsTableViewCell(cell: radioControlTableViewCell)
+        radioControlTableViewCell.delegate = self
     }
     
 }
@@ -180,10 +244,7 @@ extension RadioViewController: UITableViewDataSource {
             
         // Radio Navigation Table View Cell
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "RadioNavigationTableViewCell", for: indexPath) as! RadioNavigationTableViewCell
-            cell.delegate = self
-            viewModel.setupRadioNavigationTableViewCell(cell: cell)
-            return cell
+            return radioNavigationTableViewCell
             
         // Radio Controls Table View Cell
         case 1:
@@ -191,8 +252,9 @@ extension RadioViewController: UITableViewDataSource {
             
         // Track Table View Cell
         default:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "RadioTrackTableViewCell", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "RadioTrackTableViewCell", for: indexPath) as! RadioTrackTableViewCell
             viewModel.setupRadioTrackTableViewCell(cell: cell, indexPath: indexPath)
+            cell.delegate = self
             return cell
         }
     }
@@ -200,39 +262,107 @@ extension RadioViewController: UITableViewDataSource {
 }
 
 // MARK: - Table View Cell Delegates
-extension RadioViewController: RadioNavigationTableViewCellDelegate, RadioControlsTableViewCellDelegate {
+extension RadioViewController: RadioNavigationTableViewCellDelegate {
     
-    // MARK: - Navigation
     func downButtonPressed() {
         delegate?.radioViewControllerShouldMinimize()
     }
     
     func optionsButtonPressed() {
-        print("OPTIONS BUTTON PRESSED")
+        
+        // Create alert
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+
+        // Save Song action
+        let saveAction = UIAlertAction(title: "Save Current Song", style: .default) { (alert: UIAlertAction) in
+            if let currentTrack = GlobalPlayer.currentTrack {
+                self.viewModel.saveTrack(track: currentTrack)
+            }
+        }
+        alert.addAction(saveAction)
+        
+        // Leave action
+        let leaveAction = UIAlertAction(title: "Leave Radio", style: .destructive) { (alert: UIAlertAction) in
+            GlobalPlayer.currentQueue = []
+            GlobalPlayer.currentTrack = nil
+        }
+        alert.addAction(leaveAction)
+        
+        // Cancel action
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(cancelAction)
+        
+        delegate?.shouldShowAlertController(alert: alert)
     }
     
-    // MARK: - Controls
+}
+
+extension RadioViewController: RadioControlsTableViewCellDelegate {
+    
     func sliderDurationChanged(duration: Float) {
         print("DURATION CHANGED \(duration)")
     }
     
+    // Disable Rewind for now
     func rewindButtonPressed() {
         print("REWIND")
     }
     
+    // Play or pause
     func playButtonPressed() {
-        
         if(Player.player.rate != 0 && Player.player.error == nil) {
             Player.player.pause()
+            smallPlayer.playButton.setImage(#imageLiteral(resourceName: "ic_pause"), for: .normal)
+            radioControlTableViewCell.playButton.setImage(#imageLiteral(resourceName: "ic_pause_large"), for: .normal)
         } else {
             Player.player.play()
+            smallPlayer.playButton.setImage(#imageLiteral(resourceName: "ic_play"), for: .normal)
+            radioControlTableViewCell.playButton.setImage(#imageLiteral(resourceName: "ic_play_large"), for: .normal)
         }
     }
     
+    // Skip to next song
     func fastForwardButtonPressed() {
-        print("FAST FORWARD")
+        Player.player.skip()
+        if GlobalPlayer.currentTrack == nil {
+            
+            // Update radio view controller front end
+            smallPlayerReset()
+            radioControlTableViewCell.removeCurrentSong()
+            radioControlTableViewCell.trackTitleLabel.text = "Add a track"
+            radioControlTableViewCell.trackSubtitleLabel.text = "..."
+        }
     }
     
+}
+
+extension RadioViewController: RadioTrackTableViewCellDelegate {
+    func moreButtonPressed(sender: RadioTrackTableViewCell) {
+        
+        // Get index path
+        guard var indexPath = tableView.indexPath(for: sender) else {
+            return
+        }
+        indexPath.row -= 2
+        
+        // Get track
+        let track: Track = viewModel.getTrack(at: indexPath)
+        
+        // Create alert
+        let alert = UIAlertController(title: track.title, message: nil, preferredStyle: .actionSheet)
+
+        // Save action
+        let saveAction = UIAlertAction(title: "Save", style: .default) { (alert) in
+            self.viewModel.saveTrack(track: track)
+        }
+        alert.addAction(saveAction)
+        
+        // Cancel action
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(cancelAction)
+        
+        delegate?.shouldShowAlertController(alert: alert)
+    }
 }
 
 // MARK: - Auto Layout

@@ -24,6 +24,10 @@ class Player: AVPlayer {
     override init() {
         super.init()
         
+        // Notifications
+        setupNotifications()
+        
+        // Audio Video
         try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: AVAudioSessionCategoryOptions.defaultToSpeaker)
         try? AVAudioSession.sharedInstance().setActive(true)
     }
@@ -31,11 +35,19 @@ class Player: AVPlayer {
     // MARK: - Helper Functions
     func play(track: Track) {
         
+        // Add song to list instead of playing it
+        if GlobalPlayer.currentTrack != nil {
+            GlobalPlayer.currentQueue.append(track)
+            return
+        }
+        
         // Add to history
         FirebaseService.addToHistory(track: track)
         
-        FirebaseService.createSession(trackId: track.songId) { (_) in
-        }
+//        FirebaseService.createSession(trackId: track.songId) { (_) in
+//        }
+        
+        GlobalPlayer.currentTrack = track
         
         // Play Video
         XCDYouTubeClient.default().getVideoWithIdentifier(track.songId) { (video, error) in
@@ -69,6 +81,10 @@ class Player: AVPlayer {
         }
     }
     
+    func skip() {
+        playerDidFinishPlaying(notification: nil)
+    }
+    
     func seek(to seconds: TimeInterval, startTime: TimeInterval) {
         getCurrentTime { (time) in
             let time = time - startTime + seconds
@@ -96,3 +112,28 @@ class Player: AVPlayer {
         }
     }
 }
+
+// MARK: - Player Finished Playing
+extension Player {
+    
+    func setupNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying(notification:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.currentItem)
+    }
+    
+    func playerDidFinishPlaying(notification: Notification?) {
+        
+        GlobalPlayer.currentTrack = nil
+        if GlobalPlayer.currentQueue.isEmpty {
+            self.replaceCurrentItem(with: nil)
+            return
+        }
+        
+        let newTrack = GlobalPlayer.currentQueue[0]
+        GlobalPlayer.currentQueue.removeFirst()
+        play(track: newTrack)
+    }
+    
+}
+
+
+

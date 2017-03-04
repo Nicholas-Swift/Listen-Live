@@ -9,14 +9,14 @@
 import UIKit
 import Alamofire
 
-protocol RadioTrackTableViewCellDelegate {
+protocol RadioTrackTableViewCellDelegate: class {
     func moreButtonPressed(sender: RadioTrackTableViewCell)
 }
 
 class RadioTrackTableViewCell: UITableViewCell {
     
     // MARK: - Instance Vars
-    var delegate: RadioTrackTableViewCellDelegate?
+    weak var delegate: RadioTrackTableViewCellDelegate?
     var request: Request?
     
     // MARK: - Subviews

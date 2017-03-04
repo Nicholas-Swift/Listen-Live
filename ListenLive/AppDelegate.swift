@@ -57,36 +57,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Handle Facebook
         let handled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, options: options)
-        
-        // Error
-        if url.absoluteString.contains("#error") { // WORST ERROR HANDLING IN THE WORLD?
-            return handled
-        }
-        
-        // Make sure we have access token
-        guard let current = FBSDKAccessToken.current(), let accessToken = current.tokenString else {
-            return handled
-        }
-        
-        // Firebase configuration
-        let credential = FIRFacebookAuthProvider.credential(withAccessToken: accessToken)
-        FIRAuth.auth()?.signIn(with: credential, completion: { (user: FIRUser?, error: Error?) in
-            
-            // Error
-            if let error = error {
-                print("FUCK ERROR \(error)")
-                return
-            }
-            
-            // Successfully went through, move to main view
-            self.window = UIWindow(frame: UIScreen.main.bounds)
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let initialViewController = storyboard.instantiateViewController(withIdentifier: "ContainerViewController")
-            self.window?.rootViewController = initialViewController
-            self.window?.makeKeyAndVisible()
-            
-        })
-        
         return handled
     }
 

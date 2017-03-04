@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-protocol RadioControlsTableViewCellDelegate {
+protocol RadioControlsTableViewCellDelegate: class {
     func sliderDurationChanged(duration: Float)
     func rewindButtonPressed()
     func playButtonPressed()
@@ -19,7 +19,7 @@ protocol RadioControlsTableViewCellDelegate {
 class RadioControlsTableViewCell: UITableViewCell {
     
     // MARK: - Instance Vars
-    var delegate: RadioControlsTableViewCellDelegate?
+    weak var delegate: RadioControlsTableViewCellDelegate?
     var playerLayer: AVPlayerLayer?
     
     // MARK: - Subviews
@@ -48,6 +48,9 @@ class RadioControlsTableViewCell: UITableViewCell {
     // MARK: - View Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        durationSlider.isContinuous = false
+        rewindButton.isEnabled = false
     }
     
     // MARK: - Setup Video
@@ -66,5 +69,10 @@ class RadioControlsTableViewCell: UITableViewCell {
         super.layoutIfNeeded()
         
         playerLayer?.frame = CGRect(x: 0, y: 0, width: videoViewContainer.frame.width, height: videoViewContainer.frame.height)
+    }
+    
+    func removeCurrentSong() {
+        playerLayer?.removeFromSuperlayer()
+        setupVideoLayer()
     }
 }

@@ -12,6 +12,7 @@
 		0121B3A11E623BED00D28DB4 /* UIImage+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0121B3A01E623BED00D28DB4 /* UIImage+Color.swift */; };
 		017A429E1E62C72800874120 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 017A429D1E62C72800874120 /* SearchViewController.xib */; };
 		018A9B601E6225100023409B /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018A9B5F1E6225100023409B /* ContainerViewController.swift */; };
+		0195A88F1E6947840062C00A /* GlobalPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0195A88E1E6947840062C00A /* GlobalPlayer.swift */; };
 		019EDD961E6155E3001C382F /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019EDD951E6155E3001C382F /* Track.swift */; };
 		01B0B2971E62B0F500A0DE7F /* SmallPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01B0B2961E62B0F500A0DE7F /* SmallPlayerView.xib */; };
 		01B0B2991E62B22E00A0DE7F /* SmallPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B0B2981E62B22E00A0DE7F /* SmallPlayerView.swift */; };
@@ -52,6 +53,7 @@
 		0121B3A01E623BED00D28DB4 /* UIImage+Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Color.swift"; sourceTree = "<group>"; };
 		017A429D1E62C72800874120 /* SearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
 		018A9B5F1E6225100023409B /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		0195A88E1E6947840062C00A /* GlobalPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalPlayer.swift; sourceTree = "<group>"; };
 		019EDD951E6155E3001C382F /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		01B0B2961E62B0F500A0DE7F /* SmallPlayerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SmallPlayerView.xib; sourceTree = "<group>"; };
 		01B0B2981E62B22E00A0DE7F /* SmallPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmallPlayerView.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 		01F914781E6131A1001BA236 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				0195A88E1E6947840062C00A /* GlobalPlayer.swift */,
 				D33CEAB81E61849400B8D0EE /* Player.swift */,
 			);
 			path = Utilities;
@@ -392,6 +395,7 @@
 				01CF05B31E6177820009947F /* SearchHeaderView.swift in Sources */,
 				010A80CB1E615E3000290899 /* SearchViewModel.swift in Sources */,
 				0121B3A11E623BED00D28DB4 /* UIImage+Color.swift in Sources */,
+				0195A88F1E6947840062C00A /* GlobalPlayer.swift in Sources */,
 				01F914611E613141001BA236 /* AppDelegate.swift in Sources */,
 				D33CEAB31E61769400B8D0EE /* FirebaseService.swift in Sources */,
 				01F9148A1E61331E001BA236 /* RadioViewController.swift in Sources */,

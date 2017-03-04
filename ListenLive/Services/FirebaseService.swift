@@ -13,10 +13,13 @@ class FirebaseService {
     
     static let ref = FIRDatabase.database().reference()
     
-    static func listenToFriends(startedListening: () -> Void) {
-        
-    }
+    static func listenToFriends(startedListening: () -> Void) {}
+}
+
+// MARK: - Tracks
+extension FirebaseService {
     
+    // Save Tracks
     static func getSavedTracks(completionHandler: @escaping ([Track], Error?) -> Void) {
         guard let currentUser = FIRAuth.auth()?.currentUser else {
             completionHandler([], nil)
@@ -54,21 +57,14 @@ class FirebaseService {
         ref.child(FirebaseConstants.tracks).child(currentUser.uid).child(track.songId).removeValue()
     }
     
-    static func addToHistory(track: Track) {
-        guard let currentUser = FIRAuth.auth()?.currentUser else {
-            return
-        }
-        
-        ref.child(FirebaseConstants.history).child(currentUser.uid).child(track.songId).setValue(track.toJSON())
-    }
-    
+    // History
     static func getHistory(completionHandler: @escaping ([Track], Error?) -> Void) {
         guard let currentUser = FIRAuth.auth()?.currentUser else {
             completionHandler([], nil)
             return
         }
         
-        ref.child(FirebaseConstants.history).child(currentUser.uid).observe(.value, with: { (snapshot) in
+        ref.child(FirebaseConstants.history).child(currentUser.uid).queryLimited(toLast: 5).observe(.value, with: { (snapshot) in
             
             var tracks: [Track] = []
             for item in snapshot.children {
@@ -78,10 +74,24 @@ class FirebaseService {
                     }
                 }
             }
+            tracks = tracks.reversed()
             
             completionHandler(tracks, nil)
         })
     }
+    
+    static func addToHistory(track: Track) {
+        guard let currentUser = FIRAuth.auth()?.currentUser else {
+            return
+        }
+        
+        ref.child(FirebaseConstants.history).child(currentUser.uid).childByAutoId().setValue(track.toJSON())
+    }
+    
+}
+
+// MARK: - Sessions
+extension FirebaseService {
     
     static func createSession(trackId: String, completion: (Session) -> Void) {
         guard Session.currentSession == nil else {
@@ -143,4 +153,5 @@ class FirebaseService {
             })
         })
     }
+    
 }

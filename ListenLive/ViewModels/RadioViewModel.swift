@@ -10,7 +10,23 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
 
-class RadioViewModel {}
+class RadioViewModel {
+    var tracks: [Track] = []
+}
+
+// MARK: - Tracks
+extension RadioViewModel {
+    
+    // Get track based on indexPath
+    func getTrack(at indexPath: IndexPath) -> Track {
+        return tracks[indexPath.row]
+    }
+    
+    func saveTrack(track: Track) {
+        FirebaseService.saveTrack(track: track)
+    }
+    
+}
 
 // MARK: - Table View Delegate
 extension RadioViewModel {
@@ -36,7 +52,7 @@ extension RadioViewModel {
     }
     
     func numberOfRows() -> Int {
-        return 10
+        return 2 + tracks.count
     }
     
     func setupRadioNavigationTableViewCell(cell: UITableViewCell) {
@@ -54,7 +70,15 @@ extension RadioViewModel {
     }
     
     func setupRadioTrackTableViewCell(cell: UITableViewCell, indexPath: IndexPath) {
-        // do shit
+        guard let cell = cell as? RadioTrackTableViewCell else {
+            return
+        }
+        
+        let track = tracks[indexPath.row - 2]
+        
+        cell.trackTitleLabel.text = track.title
+        cell.trackSubtitleLabel.text = track.songId
+        cell.thumbnailImageView.af_setImage(withURL: track.thumbnailURL)
     }
     
 }

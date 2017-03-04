@@ -20,26 +20,26 @@
                 <rect key="frame" x="0.0" y="0.0" width="411" height="438"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="วันไร้สมอง - MONOMANIA feat.Art Philosopher Brothers" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W0k-C3-nwa">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add a track" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W0k-C3-nwa">
                         <rect key="frame" x="24" y="268" width="363" height="19.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="MONOMANIA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c06-ff-iDk">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c06-ff-iDk">
                         <rect key="frame" x="24" y="291" width="363" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="f2f-1G-I2O">
+                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="f2f-1G-I2O">
                         <rect key="frame" x="14" y="324.5" width="383" height="31"/>
                         <connections>
                             <action selector="durationAction:" destination="H8m-ee-2ZW" eventType="valueChanged" id="OSI-1Y-LYs"/>
                         </connections>
                     </slider>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I1h-e1-Wz3">
-                        <rect key="frame" x="91" y="371" width="44" height="44"/>
+                        <rect key="frame" x="91" y="370" width="44" height="44"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="44" id="P3d-G7-6EZ"/>
                             <constraint firstAttribute="height" constant="44" id="zSy-5M-ojT"/>
@@ -50,7 +50,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="got-Z5-eUB">
-                        <rect key="frame" x="183" y="371" width="44" height="44"/>
+                        <rect key="frame" x="183" y="370" width="44" height="44"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="44" id="1Qd-eE-v8O"/>
                             <constraint firstAttribute="width" constant="44" id="qpd-NY-RGw"/>
@@ -61,7 +61,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iXg-Ia-NKS">
-                        <rect key="frame" x="275" y="371" width="44" height="44"/>
+                        <rect key="frame" x="275" y="370" width="44" height="44"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="44" id="FNm-ni-voc"/>
                             <constraint firstAttribute="width" constant="44" id="e3n-CU-txK"/>

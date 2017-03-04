@@ -8,7 +8,14 @@
 
 import UIKit
 
+protocol SmallPlayerViewDelegate {
+    func playButtonPressed()
+}
+
 class SmallPlayerView: UIView {
+    
+    // MARK: - Instance Vars
+    var delegate: SmallPlayerViewDelegate?
     
     // MARK: - Subviews
     @IBOutlet weak var thumbnailImageView: UIImageView!
