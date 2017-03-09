@@ -23,6 +23,12 @@ class SmallPlayerView: UIView {
     @IBOutlet weak var trackSubtitleLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
     
+    // MARK: - Subview Actions
+    @IBAction func playAction(_ sender: Any) {
+        delegate?.playButtonPressed()
+    }
+    
+    
     // MARK: - View Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()

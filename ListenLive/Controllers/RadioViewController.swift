@@ -95,10 +95,11 @@ extension RadioViewController {
 }
 
 // MARK: - Small Player
-extension RadioViewController {
+extension RadioViewController: SmallPlayerViewDelegate {
     
     func setupSmallPlayer() {
         
+        smallPlayer.delegate = self
         let tap = UITapGestureRecognizer(target: self, action: #selector(smallPlayerTapped))
         smallPlayer.addGestureRecognizer(tap)
         
@@ -312,12 +313,12 @@ extension RadioViewController: RadioControlsTableViewCellDelegate {
     func playButtonPressed() {
         if(Player.player.rate != 0 && Player.player.error == nil) {
             Player.player.pause()
-            smallPlayer.playButton.setImage(#imageLiteral(resourceName: "ic_pause"), for: .normal)
-            radioControlTableViewCell.playButton.setImage(#imageLiteral(resourceName: "ic_pause_large"), for: .normal)
-        } else {
-            Player.player.play()
             smallPlayer.playButton.setImage(#imageLiteral(resourceName: "ic_play"), for: .normal)
             radioControlTableViewCell.playButton.setImage(#imageLiteral(resourceName: "ic_play_large"), for: .normal)
+        } else {
+            Player.player.play()
+            smallPlayer.playButton.setImage(#imageLiteral(resourceName: "ic_pause"), for: .normal)
+            radioControlTableViewCell.playButton.setImage(#imageLiteral(resourceName: "ic_pause_large"), for: .normal)
         }
     }
     
@@ -331,6 +332,10 @@ extension RadioViewController: RadioControlsTableViewCellDelegate {
             radioControlTableViewCell.removeCurrentSong()
             radioControlTableViewCell.trackTitleLabel.text = "Add a track"
             radioControlTableViewCell.trackSubtitleLabel.text = "..."
+            
+            // Update play pause button
+            smallPlayer.playButton.setImage(#imageLiteral(resourceName: "ic_pause"), for: .normal)
+            radioControlTableViewCell.playButton.setImage(#imageLiteral(resourceName: "ic_pause_large"), for: .normal)
         }
     }
     

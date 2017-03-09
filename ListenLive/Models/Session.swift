@@ -15,7 +15,7 @@ class Session {
     // MARK: - Instance Vars
     var id: String
     var trackId: String
-    var time: TimeInterval
+    var time: Int
     var timeSetAt: TimeInterval
     var state: PlayerState
     
@@ -23,15 +23,15 @@ class Session {
     init?(snapshot: [String: Any], id: String) {
         guard
             let trackId = snapshot[FirebaseConstants.track] as? String,
-            let time = snapshot[FirebaseConstants.time] as? TimeInterval,
-            let timeSetAt = snapshot[FirebaseConstants.timeSetAt] as? TimeInterval,
+            let time = snapshot[FirebaseConstants.time] as? Int,
+//            let timeSetAt = snapshot[FirebaseConstants.timeSetAt] as? TimeInterval,
             let state = snapshot[FirebaseConstants.state] as? String
         else { return nil }
     
         self.id = id
         self.trackId = trackId
         self.time = time
-        self.timeSetAt = timeSetAt
+        self.timeSetAt = TimeInterval()
         self.state = PlayerState(rawValue: state) ?? .playing
     }
     

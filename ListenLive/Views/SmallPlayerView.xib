@@ -23,6 +23,9 @@
                     <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="8" maxY="0.0"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="8" maxY="0.0"/>
                     <state key="normal" image="ic_play"/>
+                    <connections>
+                        <action selector="playAction:" destination="ySW-cX-xnN" eventType="touchUpInside" id="UCR-5A-Fcb"/>
+                    </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Lgi-i6-A8B">
                     <rect key="frame" x="16" y="24" width="44" height="44"/>

@@ -45,7 +45,6 @@ extension SearchViewModel {
         default:
             return savedTracks[indexPath.row]
         }
-        
     }
     
     func saveTrack(track: Track) {

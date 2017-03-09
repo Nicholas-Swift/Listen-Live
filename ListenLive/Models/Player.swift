@@ -44,9 +44,10 @@ class Player: AVPlayer {
         // Add to history
         FirebaseService.addToHistory(track: track)
         
-//        FirebaseService.createSession(trackId: track.songId) { (_) in
-//        }
-        
+        // Start Session
+        FirebaseService.createSession(trackId: track.songId) { (session: Session) in
+            print("Created session")
+        }
         GlobalPlayer.currentTrack = track
         
         // Play Video
